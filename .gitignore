@@ -1,0 +1,17 @@
+# Local setup notes (not part of the tracked project)
+CLAUDE_CODE_SETUP.md
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Pulled data (undecided whether any subset is safe to commit)
+data/*
+!data/.gitkeep
+
+# Editor / OS
+.vscode/
+.DS_Store
