@@ -4,6 +4,7 @@ CLAUDE_CODE_SETUP.md
 # Python
 __pycache__/
 *.pyc
+.env
 .venv/
 venv/
 *.egg-info/

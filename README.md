@@ -65,11 +65,30 @@ outcome class, not silently dropped.
 
 - Python 3.14.3
 - Dependencies pinned in [requirements.txt](requirements.txt)
+- NVD API key required: copy `.env.example` to `.env` and fill in `NVD_API_KEY`
+  (get one at https://nvd.nist.gov/developers/request-an-api-key)
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\pip install -r requirements.txt
 ```
+
+## Scripts
+
+- `src/nvd_client.py` -- shared NVD CVE API 2.0 client: rate limiting, retry/
+  backoff, `.env`-based API key, `<=120`-day date-window chunking.
+- `src/corpus_filter.py` -- Appendix B embedded/IoT corpus inclusion rule.
+  Only the parts that are fully specified are implemented so far (part:h
+  presence; Rejected/Disputed exclusion). See the module docstring for what's
+  still pending (curated vendor list, device-firmware naming pattern, soft
+  exclusion categories).
+- `src/discover_vendor_candidates.py` -- crawls NVD for CVEs with a part:h CPE
+  in a consumer/small-business network-equipment/gateway/camera/NAS category,
+  ranks vendors by CVE count, writes `docs/vendor_candidates.md` for manual
+  pruning into the curated vendor list.
+- `src/pilot_pull.py` -- pulls a 200-record pilot slice stratified across the
+  three disclosure eras, applies `corpus_filter`, and writes
+  `docs/pilot_report.md` plus raw JSON under `data/pilot_<date>/` (gitignored).
 
 ## Status
 
