@@ -22,6 +22,23 @@ date range:
 Windows that can't fill their allocated share are reported as per-window
 shortfalls, not padded from elsewhere.
 
+Standing diagnostics carried forward from this point on (not new-version
+material, just better reporting on the same v2 sampling method):
+  - `vulnStatus` is recorded for every collected record and reported per
+    era, RAW COUNTS ONLY -- this is not yet interpreted. It exists to check
+    whether the `configurations` field on triage-era records reflects NVD
+    analyst enrichment (`vulnStatus=Analyzed`/`Modified`) or CNA-supplied
+    `cpeApplicability` data present regardless of NVD's analysis queue
+    (`Awaiting Analysis`/`Undergoing Analysis`/`Received`/`Deferred`). The
+    "Selection-effect limitation" note in the generated report is NOT
+    revised based on this data until it's been reviewed -- see that note's
+    own text for which mechanism it currently claims.
+  - Each sampled window's scan:collect ratio (CVEs scanned / records
+    collected) is reported as a standing column in the per-window sampling
+    table, to make enrichment-lag / match-density changes within an era
+    visible (e.g. a rising ratio across a single era's windows signals the
+    matching CVEs are getting harder to find, not that the filter changed).
+
 v1's outputs (docs/pilot_report_v1.md, data/pilot_<date>_v1/) and v0's
 outputs (docs/pilot_report.md, data/pilot_<date>/) are left untouched.
 
@@ -65,6 +82,10 @@ DOCS_PATH = REPO_ROOT / "docs" / "pilot_report_v2.md"
 NVD_SOURCE = "nvd@nist.gov"
 RULE_TAGS = ("h_any", "h_vulnerable_true", "o_firmware", "include_b_vendor_pattern")
 PRE_2024_ERA_NAME = "pre-2024"
+# Era-confounded: structurally near-zero (CNA-supplied) or near-100%
+# (NVD retroactive scoring) for old records regardless of device type.
+# Reported per-era only, never as an overall aggregate -- see report.
+CVSS_LABELS = ("CVSS: CNA-supplied present", "CVSS: NVD-added present")
 
 
 @dataclass(frozen=True)
@@ -224,6 +245,7 @@ def main() -> None:
     era_records: dict[str, list[dict]] = {}
     era_scanned: dict[str, int] = {}
     era_rule_tag_counts: dict[str, Counter] = {}
+    era_vuln_status_counts: dict[str, Counter] = {}
     era_window_reports: dict[str, list[dict]] = {}
     ambiguous_log: list[dict] = []
 
@@ -239,6 +261,7 @@ def main() -> None:
 
         matched: list[dict] = []
         rule_tag_counts: Counter = Counter()
+        vuln_status_counts: Counter = Counter()
         scanned = 0
         window_reports: list[dict] = []
 
@@ -263,6 +286,7 @@ def main() -> None:
                 if decision.included:
                     matched.append(cve)
                     w_matched += 1
+                    vuln_status_counts[cve.get("vulnStatus") or "(missing)"] += 1
                     for tag in decision.rule_tags:
                         rule_tag_counts[tag] += 1
                     if w_matched >= w_quota:
@@ -274,6 +298,7 @@ def main() -> None:
                     "target": w_quota,
                     "collected": w_matched,
                     "scanned": w_scanned,
+                    "ratio": (w_scanned / w_matched) if w_matched else None,
                 }
             )
             if w_matched < w_quota:
@@ -286,6 +311,7 @@ def main() -> None:
         era_records[era.name] = matched
         era_scanned[era.name] = scanned
         era_rule_tag_counts[era.name] = rule_tag_counts
+        era_vuln_status_counts[era.name] = vuln_status_counts
         era_window_reports[era.name] = window_reports
         print(
             f"  -> {len(matched)}/{era.quota} collected, {scanned} CVEs scanned "
@@ -309,6 +335,11 @@ def main() -> None:
     overall_rule_tag_counts: Counter = Counter()
     for c in era_rule_tag_counts.values():
         overall_rule_tag_counts.update(c)
+
+    overall_vuln_status_counts: Counter = Counter()
+    for c in era_vuln_status_counts.values():
+        overall_vuln_status_counts.update(c)
+    all_vuln_statuses = sorted(overall_vuln_status_counts)
 
     # --- report ---
     all_records = [r for era in eras for r in era_records[era.name]]
@@ -381,19 +412,28 @@ def main() -> None:
         "**equal** share per year (not proportional to day count, since every sampled "
         "window is the same length). This means pre-2024 coverage is Jan-Apr-biased "
         "within each year, not full-year-uniform -- a documented compromise, not a "
-        "claim of uniform annual coverage.\n"
+        "claim of uniform annual coverage. In practice (see the date-span table below), "
+        "every sampled year's quota was filled from within January alone before the scan "
+        "ever reached February -- so the 25 distinct year-months in this run are 25 "
+        "Januarys, not a Jan-Apr spread. This is a further, empirically-observed "
+        "narrowing on top of the documented Jan-Apr compromise, not a separate bug.\n"
         "- A window that can't fill its allocated share is a per-window shortfall, "
         "reported below, not padded from another window.\n"
+        "- **Scan:collect ratio** (CVEs scanned / records collected) is reported per "
+        "window as a standing diagnostic: a rising ratio across an era's windows "
+        "signals matching CVEs are getting harder to find (enrichment lag), not that "
+        "the filter changed.\n"
     )
     lines.append("### Sampling windows, per era\n")
     for era in eras:
         lines.append(f"\n**{era.name}**\n")
-        lines.append("| Window | Target | Collected | Scanned |")
-        lines.append("|---|---:|---:|---:|")
+        lines.append("| Window | Target | Collected | Scanned | Scan:Collect ratio |")
+        lines.append("|---|---:|---:|---:|---:|")
         for wr in era_window_reports[era.name]:
+            ratio = f"{wr['ratio']:.1f}:1" if wr["ratio"] is not None else "n/a (0 collected)"
             lines.append(
                 f"| {wr['start'].date()} .. {wr['end'].date()} | {wr['target']} | "
-                f"{wr['collected']} | {wr['scanned']} |"
+                f"{wr['collected']} | {wr['scanned']} | {ratio} |"
             )
 
     lines.append("\n## Date span, per era (post-fix check)\n")
@@ -421,6 +461,23 @@ def main() -> None:
         row.append(str(overall_rule_tag_counts.get(tag, 0)))
         lines.append(f"| `{tag}` | " + " | ".join(row) + " |")
 
+    lines.append("\n## `vulnStatus` distribution, per era (counts only -- not yet interpreted)\n")
+    lines.append(
+        "Recorded to check whether `configurations` presence on triage-era records "
+        "reflects NVD analyst enrichment (`vulnStatus` = `Analyzed` / `Modified`) or "
+        "CNA-supplied `cpeApplicability` data present regardless of NVD's analysis queue "
+        "(`Awaiting Analysis` / `Undergoing Analysis` / `Received` / `Deferred`). "
+        "**These are raw counts only; no interpretation is drawn here, and the "
+        "\"Selection-effect limitation\" note above is deliberately NOT revised based on "
+        "this table until it has been reviewed.**\n"
+    )
+    lines.append("| vulnStatus | pre-2024 | backlog era | triage era | Overall |")
+    lines.append("|---|---:|---:|---:|---:|")
+    for status in all_vuln_statuses:
+        row = [str(era_vuln_status_counts[era.name].get(status, 0)) for era in eras]
+        row.append(str(overall_vuln_status_counts.get(status, 0)))
+        lines.append(f"| {status} | " + " | ".join(row) + " |")
+
     lines.append("\n## Target vs. achieved, per era\n")
     lines.append("| Era | Target | Collected | CVEs scanned to find them |")
     lines.append("|---|---:|---:|---:|")
@@ -438,18 +495,51 @@ def main() -> None:
         )
 
     lines.append("\n## Field population -- overall\n")
+    lines.append(
+        "*`CVSS: CNA-supplied present` and `CVSS: NVD-added present` are intentionally "
+        "omitted from this aggregate -- both are era-confounded (see \"CVSS field "
+        "population\" below) and a single overall percentage for them is not "
+        "meaningful.*\n"
+    )
     lines.append("| Field | % of collected records |")
     lines.append("|---|---:|")
     for label, val in overall_pct.items():
+        if label in CVSS_LABELS:
+            continue
         lines.append(f"| {label} | {fmt_pct(val)} |")
 
+    lines.append("\n## CVSS field population (era-confounded -- per-era only)\n")
+    lines.append(
+        "No overall aggregate is reported for these two fields: CNA-supplied CVSS is "
+        "structurally near-zero for pre-2016 records because CNAs did not begin "
+        "routinely supplying CVSS scores until later in the CVE program's history, and "
+        "NVD-added CVSS is near-100% for old records because of retroactive scoring. "
+        "Neither pattern is a finding about embedded/IoT vendors or device types -- both "
+        "are artifacts of when a record was published, so they are only meaningful read "
+        "per era.\n"
+    )
+    lines.append("| Era | CVSS: CNA-supplied present | CVSS: NVD-added present |")
+    lines.append("|---|---:|---:|")
+    for era in eras:
+        pct = percentages(era_records[era.name])
+        lines.append(
+            f"| {era.name} | {fmt_pct(pct['CVSS: CNA-supplied present'])} | "
+            f"{fmt_pct(pct['CVSS: NVD-added present'])} |"
+        )
+
     lines.append("\n## Field population -- by era\n")
+    lines.append(
+        "*CVSS fields are omitted here -- see \"CVSS field population\" above, which "
+        "already reports these two fields per era.*\n"
+    )
     for era in eras:
         pct = percentages(era_records[era.name])
         lines.append(f"\n### {era.name} (n={len(era_records[era.name])})\n")
         lines.append("| Field | % |")
         lines.append("|---|---:|")
         for label, val in pct.items():
+            if label in CVSS_LABELS:
+                continue
             lines.append(f"| {label} | {fmt_pct(val)} |")
 
     DOCS_PATH.parent.mkdir(parents=True, exist_ok=True)
