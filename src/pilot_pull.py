@@ -1,6 +1,12 @@
 """Pull a 200-record embedded/IoT pilot slice from NVD, stratified across three
 disclosure eras, and report schema-field population rates.
 
+v1: uses corpus_filter's corrected inclusion rule (part:h anywhere, plus
+part:o firmware-named products -- see corpus_filter.py for why v0's
+h+vulnerable-true-only rule was wrong). Outputs go to new v1 paths;
+docs/pilot_report.md and data/pilot_<date>/ from the v0 run are left
+untouched for a before/after comparison.
+
 Eras (per project design):
   - pre-2024          : before 2024-01-01
   - backlog era       : 2024-01-01 through 2026-02-28
@@ -15,13 +21,13 @@ range is exhausted -- whichever comes first. Shortfalls are reported, not
 padded.
 
 Outputs:
-  - data/pilot_<YYYYMMDD>/<era>.json  (raw NVD CVE records actually included)
-  - docs/pilot_report.md              (methodology + population percentages)
+  - data/pilot_<YYYYMMDD>_v1/<era>.json  (raw NVD CVE records actually included)
+  - docs/pilot_report_v1.md              (methodology + population percentages)
 """
 from __future__ import annotations
 
 import json
-import re
+from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -30,9 +36,10 @@ from corpus_filter import classify, extract_part_matches
 from nvd_client import NvdClient, date_windows
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-DOCS_PATH = REPO_ROOT / "docs" / "pilot_report.md"
+DOCS_PATH = REPO_ROOT / "docs" / "pilot_report_v1.md"
 
 NVD_SOURCE = "nvd@nist.gov"
+RULE_TAGS = ("h_any", "h_vulnerable_true", "o_firmware", "include_b_vendor_pattern")
 
 
 @dataclass(frozen=True)
@@ -148,6 +155,7 @@ def main() -> None:
 
     era_records: dict[str, list[dict]] = {}
     era_scanned: dict[str, int] = {}
+    era_rule_tag_counts: dict[str, Counter] = {}
     ambiguous_log: list[dict] = []
 
     for era in eras:
@@ -155,6 +163,7 @@ def main() -> None:
         windows = list(date_windows(era.start, era.end))
         windows.reverse()  # most recent first: IoT/embedded CVEs skew recent
         matched: list[dict] = []
+        rule_tag_counts: Counter = Counter()
         scanned = 0
         for w in windows:
             if len(matched) >= era.quota:
@@ -177,17 +186,20 @@ def main() -> None:
                     )
                 if decision.included:
                     matched.append(cve)
+                    for tag in decision.rule_tags:
+                        rule_tag_counts[tag] += 1
                     if len(matched) >= era.quota:
                         break
         era_records[era.name] = matched
         era_scanned[era.name] = scanned
+        era_rule_tag_counts[era.name] = rule_tag_counts
         print(
             f"  -> {len(matched)}/{era.quota} collected, {scanned} CVEs scanned",
             flush=True,
         )
 
     # --- persist raw JSON per era ---
-    data_dir = REPO_ROOT / "data" / f"pilot_{retrieved_at.strftime('%Y%m%d')}"
+    data_dir = REPO_ROOT / "data" / f"pilot_{retrieved_at.strftime('%Y%m%d')}_v1"
     data_dir.mkdir(parents=True, exist_ok=True)
     for era in eras:
         out_path = data_dir / f"{era.name.split(' ')[0].replace('/', '-')}.json"
@@ -199,33 +211,53 @@ def main() -> None:
     ambiguity_path = data_dir / "ambiguous.json"
     ambiguity_path.write_text(json.dumps(ambiguous_log, indent=2), encoding="utf-8")
 
+    overall_rule_tag_counts: Counter = Counter()
+    for c in era_rule_tag_counts.values():
+        overall_rule_tag_counts.update(c)
+
     # --- report ---
     all_records = [r for era in eras for r in era_records[era.name]]
     overall_pct = percentages(all_records)
 
     lines = []
-    lines.append("# Pilot Slice Report\n")
+    lines.append("# Pilot Slice Report v1 (corrected inclusion rule)\n")
     lines.append(
         f"Retrieved: {retrieved_at.isoformat(timespec='seconds')} from the NVD CVE API 2.0.\n"
     )
     lines.append(
-        "**Corpus filter applied:** `corpus_filter.classify()` -- Include A "
-        "(part:h CPE present) and the hard Rejected/Disputed exclusion only. "
-        "Include B (part:o/part:a + curated vendor + device-firmware naming "
-        "pattern) and the soft exclusion categories (enterprise datacenter "
-        "networking/server platforms, ICS, medical devices, automotive, "
-        "mobile handsets, general-purpose computers) are **not yet applied**: "
-        "they need the pruned curated vendor list and the Appendix B "
-        "classification/naming-pattern text, neither of which has been "
-        "supplied yet. Numbers below reflect Include-A-only membership.\n"
+        "**v1 vs v0:** the original run (`docs/pilot_report.md`) required `part:h` "
+        "marked `vulnerable: true`, a convention NVD stopped using for embedded "
+        "devices around 2011. v1 matches `part:h` anywhere in `configurations` "
+        "regardless of the `vulnerable` flag (Include A), plus `part:o` CPEs whose "
+        "product ends in `_firmware` (Include C). See `src/corpus_filter.py`.\n"
+    )
+    lines.append(
+        "**Still not applied:** Include B (part:o/part:a + curated vendor + "
+        "model-designator pattern) -- no curated vendor list yet. Soft exclusion "
+        "categories (enterprise datacenter networking/server platforms, ICS, "
+        "medical devices, automotive, mobile handsets, general-purpose computers) "
+        "-- explicitly deferred to Week 4 by the project owner, not a blocker. "
+        "Numbers below may still include some of those categories.\n"
     )
     lines.append(
         f"**Ambiguity list** (matched both an inclusion and the implemented "
         f"exclusion criteria, resolved as excluded per the tiebreaker rule): "
         f"{len(ambiguous_log)} record(s). Full list: "
-        f"`data/pilot_{retrieved_at.strftime('%Y%m%d')}/ambiguous.json`.\n"
+        f"`data/pilot_{retrieved_at.strftime('%Y%m%d')}_v1/ambiguous.json`.\n"
     )
-    lines.append("## Target vs. achieved, per era\n")
+    lines.append("## Rule-tag breakdown (before/after comparison)\n")
+    lines.append(
+        "A CVE can match more than one tag; counts are of collected (included) "
+        "records only and do not need to sum to the totals above.\n"
+    )
+    lines.append("| Rule tag | pre-2024 | backlog era | triage era | Overall |")
+    lines.append("|---|---:|---:|---:|---:|")
+    for tag in RULE_TAGS:
+        row = [str(era_rule_tag_counts[era.name].get(tag, 0)) for era in eras]
+        row.append(str(overall_rule_tag_counts.get(tag, 0)))
+        lines.append(f"| `{tag}` | " + " | ".join(row) + " |")
+
+    lines.append("\n## Target vs. achieved, per era\n")
     lines.append("| Era | Target | Collected | CVEs scanned to find them |")
     lines.append("|---|---:|---:|---:|")
     for era in eras:
