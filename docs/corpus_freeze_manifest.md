@@ -51,10 +51,14 @@ document says so rather than presenting an estimate as final.** What exists:
   measured a 2.5% (5/200) flip-to-excluded rate on the already-collected
   pilot sample once soft exclusions are applied.
 - The CVE List V5 population pass (`docs/v5_corpus_pass_2024_2026.md`) found
-  21,528 V5-path matches across 2024-2026 alone (142,781 scanned) -- this is
-  the OR-widening from adding the V5 path, and it is large enough that the
-  final frozen N cannot be reliably estimated by applying a percentage
-  adjustment to the old NVD-only number.
+  21,528 V5-path matches across 2024-2026 alone (142,779 scanned), against
+  8,663 NVD-path matches for the identical window (`docs/nvd_2024_onward_pass.md`,
+  157,109 scanned live). The two ID sets overlap by only 3,077 -- see
+  `docs/v5_vs_nvd_exclusion_count.md`: **18,451 records (68% of the
+  27,114-record combined corpus for this window alone) would be missed
+  entirely under an NVD-only sampling frame.** This is far larger than a
+  percentage adjustment to the old NVD-only number (32,964) could capture,
+  which is why the final frozen N is not estimated by scaling that number.
 
 **Scope decision (executive call, stated explicitly):** computing the final
 frozen N requires one more full pass -- NVD 1999-2023 plus CVE List V5
