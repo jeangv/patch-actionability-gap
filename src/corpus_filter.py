@@ -1,4 +1,20 @@
-"""Appendix B embedded/IoT corpus inclusion/exclusion rule -- v1.
+"""Appendix B embedded/IoT corpus inclusion/exclusion rule -- v2.
+
+v2 (Week 4, corpus freeze) adds what v1 left pending:
+
+  - Include B ("include_b_vendor_pattern") is now active: part:o/part:a CVEs
+    where the vendor is on the curated list (src/vendor_list.py) AND the
+    product matches the model-designator pattern. Pass a vendor_list; the
+    default loads the curated list from data/curated_vendor_list.json.
+  - Soft exclusion categories (enterprise datacenter/server, ICS, medical,
+    automotive, mobile handsets, general-purpose computers) are now
+    evaluated (src/soft_exclusions.py), matched against the English
+    description. A soft-exclusion match is an exclude_reason like any other;
+    the existing tiebreaker (match both inclusion and exclusion -> excluded,
+    logged ambiguous) applies unchanged, so every soft exclusion that
+    actually flips a record's outcome is visible in the ambiguity log.
+
+v1 fixed a bug in v0: NVD stopped typing embedded devices as a single
 
 v1 fixes a bug in v0: NVD stopped typing embedded devices as a single
 `part:h` CPE marked `vulnerable: true` around 2011. The current convention
@@ -28,22 +44,30 @@ a model-designator pattern (hyphenated alphanumeric, e.g. `dir-825`,
 `tl-wr841n`, `rt-n56u`). The `_firmware` clause is covered by Include C
 above; the vendor+model-designator clause is Include B below.
 
-NOT YET IMPLEMENTED (pending inputs that haven't been provided):
-  - Include B ("include_b_vendor_pattern"): part:o/part:a CVEs where the
-    vendor is on the curated list AND the product matches the model-
-    designator pattern. Needs the pruned curated vendor list -- pass
-    `vendor_list` in once available; until then this branch is skipped and
-    logged as pending, never silently applied against a guessed vendor list.
-  - Soft exclusion categories (enterprise datacenter networking/server
-    platforms, ICS, medical devices, automotive, mobile handsets,
-    general-purpose computers). Explicitly deferred to Week 4 by the
-    project owner (2026-09-04) -- not a missing input, a scheduling
-    decision. Logged as pending regardless.
 """
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass, field
+from functools import lru_cache
+from pathlib import Path
+
+from soft_exclusions import classify_soft_exclusions
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+CURATED_VENDOR_LIST_PATH = REPO_ROOT / "data" / "curated_vendor_list.json"
+
+
+@lru_cache(maxsize=1)
+def load_default_vendor_list() -> frozenset[str]:
+    """The Week 3 curated vendor list (src/build_curated_vendor_list.py),
+    which gates Include B. Cached -- callers doing a full-corpus pass call
+    classify() once per CVE and should not re-read this file every time."""
+    if not CURATED_VENDOR_LIST_PATH.exists():
+        return frozenset()
+    data = json.loads(CURATED_VENDOR_LIST_PATH.read_text(encoding="utf-8"))
+    return frozenset(v.lower() for v in data.get("vendors", []))
 
 REJECT_MARKER = re.compile(r"^\*\*\s*reject", re.IGNORECASE)
 DISPUTED_MARKER = re.compile(r"^\*\*\s*disputed", re.IGNORECASE)
@@ -55,12 +79,6 @@ FIRMWARE_SUFFIX_RE = re.compile(r"_firmware(_|$)", re.IGNORECASE)
 # dir-825, tl-wr841n, rt-n56u. Used only by Include B (vendor-list-gated).
 MODEL_DESIGNATOR_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)+$", re.IGNORECASE)
 
-PENDING_SOFT_EXCLUSION_NOTE = (
-    "soft exclusion categories (enterprise datacenter networking/server "
-    "platforms, ICS, medical devices, automotive, mobile handsets, "
-    "general-purpose computers) deferred to Week 4 per project owner "
-    "(2026-09-04), not yet evaluated"
-)
 PENDING_INCLUDE_B_NOTE = (
     "Include-B (part:o/part:a + curated vendor + model-designator pattern) "
     "not evaluated: curated vendor list not supplied yet"
@@ -83,6 +101,7 @@ class CorpusDecision:
     ambiguous: bool = False
     pending_notes: list = field(default_factory=list)
     rule_tags: set = field(default_factory=set)
+    soft_exclusion_tags: set = field(default_factory=set)
 
 
 def get_english_description(cve: dict) -> str:
@@ -105,11 +124,16 @@ def extract_part_matches(cve: dict, part: str) -> list[tuple[str, str, bool]]:
     return matches
 
 
+_UNSET = object()  # sentinel: "use the curated list" vs. explicit vendor_list=None ("no list")
+
+
 def find_inclusion_matches(
     cve: dict,
-    vendor_list: set[str] | None = None,
+    vendor_list=_UNSET,
     firmware_pattern: "re.Pattern" = MODEL_DESIGNATOR_RE,
 ) -> list[RuleMatch]:
+    if vendor_list is _UNSET:
+        vendor_list = load_default_vendor_list()
     matches: list[RuleMatch] = []
 
     for vendor, product, vulnerable in extract_part_matches(cve, "h"):
@@ -121,7 +145,7 @@ def find_inclusion_matches(
         for vendor, product, _vulnerable in extract_part_matches(cve, part):
             if part == "o" and FIRMWARE_SUFFIX_RE.search(product):
                 matches.append(RuleMatch("o_firmware", vendor, product))
-            elif vendor_list is not None and vendor in vendor_list and firmware_pattern.match(product):
+            elif vendor_list and vendor.lower() in vendor_list and firmware_pattern.match(product):
                 matches.append(RuleMatch("include_b_vendor_pattern", vendor, product))
 
     return matches
@@ -129,17 +153,20 @@ def find_inclusion_matches(
 
 def classify(
     cve: dict,
-    vendor_list: set[str] | None = None,
+    vendor_list=_UNSET,
     firmware_pattern: "re.Pattern" = MODEL_DESIGNATOR_RE,
 ) -> CorpusDecision:
     cve_id = cve.get("id", "")
+
+    if vendor_list is _UNSET:
+        vendor_list = load_default_vendor_list()
 
     rule_matches = find_inclusion_matches(cve, vendor_list, firmware_pattern)
     rule_tags = {m.rule for m in rule_matches}
     include_reasons = [f"{m.rule}: {m.vendor}:{m.product}" for m in rule_matches]
 
     pending_notes: list[str] = []
-    if vendor_list is None and (extract_part_matches(cve, "o") or extract_part_matches(cve, "a")):
+    if not vendor_list and (extract_part_matches(cve, "o") or extract_part_matches(cve, "a")):
         pending_notes.append(PENDING_INCLUDE_B_NOTE)
 
     # Hard exclude: Rejected / Disputed
@@ -153,8 +180,14 @@ def classify(
     if DISPUTED_MARKER.match(desc):
         exclude_reasons.append("description marked ** DISPUTED **")
 
-    # Soft exclusion categories: deferred to Week 4, always pending for now
-    pending_notes.append(PENDING_SOFT_EXCLUSION_NOTE)
+    # Soft exclusion categories (Week 4): keyword match against the English
+    # description. A hit is an exclude_reason like any other -- the
+    # tiebreaker below (inclusion + exclusion -> excluded, logged ambiguous)
+    # applies unchanged.
+    soft_matches = classify_soft_exclusions(desc)
+    soft_exclusion_tags = {m.category for m in soft_matches}
+    for m in soft_matches:
+        exclude_reasons.append(f"{m.category}: matched {m.matched_text!r}")
 
     ambiguous = bool(rule_matches) and bool(exclude_reasons)
     included = bool(rule_matches) and not exclude_reasons
@@ -167,4 +200,5 @@ def classify(
         ambiguous=ambiguous,
         pending_notes=pending_notes,
         rule_tags=rule_tags,
+        soft_exclusion_tags=soft_exclusion_tags,
     )

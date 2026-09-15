@@ -13,6 +13,10 @@ venv/
 data/*
 !data/.gitkeep
 
+# Derived, deterministic pipeline inputs -- not "pulled data," these are
+# committed build outputs that corpus_filter.py loads by default at runtime.
+!data/curated_vendor_list.json
+
 # Editor / OS
 .vscode/
 .DS_Store
