@@ -67,6 +67,11 @@ from corpus_filter import FIRMWARE_SUFFIX_RE, classify as classify_nvd, load_def
 from discover_vendor_candidates import CATEGORY_PATTERN
 from soft_exclusions import classify_soft_exclusions
 
+# A single token with both letters and digits and no spaces: A15, AC18,
+# DIR-825, TL-WR841N, RT-AX56U. Software product names usually contain a
+# space ("Windows 11", "Exchange Server 2019") or no digit ("Chrome").
+MODEL_NUMBER_RE = re.compile(r"^(?=.*\d)(?=.*[A-Za-z])[A-Za-z0-9][A-Za-z0-9._/-]{1,19}$")
+
 
 @dataclass
 class V5Decision:
@@ -142,13 +147,20 @@ def classify(record: dict, vendor_list=None) -> V5Decision:
     # v2: vendor membership and category-keyword match must both be present
     # together (mirrors Include B on the NVD path) -- neither is sufficient
     # alone. See module docstring "Inclusion rule (V5 path) -- v2" for why.
+    # v3 (Week 6): a curated vendor with a model-number-shaped product also
+    # qualifies, the V5 analog of Include B. The positive-control set caught
+    # v2 missing Tenda A15 (CVE-2024-0531) because its description never
+    # says "router".
     desc = _all_descriptions_text(record)
     desc_matches_category = bool(CATEGORY_PATTERN.search(desc))
     for vendor, product in _affected_vendor_products(record):
+        on_list = vendor.lower() in vendor_list
         if FIRMWARE_SUFFIX_RE.search(product):
             include_reasons.append(f"v5_firmware_suffix: {vendor}:{product}")
-        elif vendor.lower() in vendor_list and desc_matches_category:
+        elif on_list and desc_matches_category:
             include_reasons.append(f"v5_vendor_and_category: {vendor}:{product}")
+        elif on_list and MODEL_NUMBER_RE.match(product):
+            include_reasons.append(f"v5_vendor_and_model: {vendor}:{product}")
 
     # CPE path (rare -- only fires when a CNA or ADP happened to supply CPE).
     for cpe_container in _find_cpe_applicability_node(record):

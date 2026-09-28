@@ -32,7 +32,10 @@ from pathlib import Path
 from corpus_filter_v5 import classify
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-V5_REPO = REPO_ROOT / "data" / "v5_repo" / "cves"
+import os
+from dotenv import load_dotenv
+load_dotenv()
+V5_REPO = Path(os.environ.get("V5_REPO_DIR", REPO_ROOT / "data" / "v5_repo")) / "cves"
 OUT_PATH = REPO_ROOT / "docs" / "v5_corpus_pass_2024_2026.md"
 YEARS = ["2024", "2025", "2026"]
 
@@ -87,7 +90,7 @@ def main() -> None:
             for reason in decision.include_reasons:
                 tag = reason.split(":", 1)[0]
                 reason_tag_counts[tag] += 1
-                if tag == "v5_vendor_and_category":
+                if tag in ("v5_vendor_and_category", "v5_vendor_and_model"):
                     vendor = reason.split(":", 2)[1].strip()
                     vendor_counts[vendor] += 1
         if total % 20000 == 0:

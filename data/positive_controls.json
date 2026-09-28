@@ -1,0 +1,335 @@
+{
+  "built_utc": "2026-09-28T03:36:37+00:00",
+  "controls": [
+    {
+      "group": "membership",
+      "id": "CVE-2024-0531",
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "note": "Tenda A15 router, stack overflow in web management UI"
+    },
+    {
+      "group": "membership",
+      "id": "CVE-2025-27480",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Microsoft Remote Desktop Gateway Service, Windows server software"
+    },
+    {
+      "group": "membership",
+      "id": "CVE-2024-38015",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Microsoft RD Gateway denial of service"
+    },
+    {
+      "group": "membership",
+      "id": "CVE-2025-21403",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Microsoft On-Premises Data Gateway"
+    },
+    {
+      "group": "membership",
+      "id": "CVE-2024-22316",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "IBM Sterling File Gateway, enterprise software"
+    },
+    {
+      "group": "membership",
+      "id": "CVE-2024-45655",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "IBM Application Gateway"
+    },
+    {
+      "group": "membership",
+      "id": "CVE-2024-22457",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Dell Secure Connect Gateway, enterprise software"
+    },
+    {
+      "group": "membership",
+      "id": "CVE-2024-44100",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Google Pixel modem component, mobile handset"
+    },
+    {
+      "group": "membership",
+      "id": "CVE-2024-27795",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Apple macOS camera extension"
+    },
+    {
+      "group": "scoring_nvd",
+      "id": "CVE-1999-0453",
+      "dimension": "identifiability",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "note": "rubric worked example: wildcard-only CPE"
+    },
+    {
+      "group": "scoring_nvd",
+      "id": "CVE-2012-0695",
+      "dimension": "identifiability",
+      "expected": 1,
+      "actual": 1,
+      "pass": true,
+      "note": "rubric worked example: upper bound only (replaced CVE-2009-5037, which also lists exact versions)"
+    },
+    {
+      "group": "scoring_nvd",
+      "id": "CVE-2009-5037",
+      "dimension": "identifiability",
+      "expected": 2,
+      "actual": 2,
+      "pass": true,
+      "note": "range plus dozens of exact versions; exact version scores 2 per rubric"
+    },
+    {
+      "group": "scoring_nvd",
+      "id": "CVE-2026-13050",
+      "dimension": "identifiability",
+      "expected": 2,
+      "actual": 2,
+      "pass": true,
+      "note": "rubric worked example: fully bounded ranges"
+    },
+    {
+      "group": "scoring_nvd",
+      "id": "CVE-2002-1595",
+      "dimension": "fix_availability",
+      "expected": 2,
+      "actual": 2,
+      "pass": true,
+      "note": "rubric worked example: Patch-tagged reference"
+    },
+    {
+      "group": "scoring_nvd",
+      "id": "CVE-1999-0453",
+      "dimension": "fix_availability",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "note": "rubric worked example: no Patch/Vendor Advisory tag, no fix language"
+    },
+    {
+      "group": "scoring_v5",
+      "id": "CVE-2024-0531",
+      "dimension": "identifiability",
+      "expected": 1,
+      "actual": 1,
+      "pass": true,
+      "note": "rubric worked example: one affected version, no range"
+    },
+    {
+      "group": "scoring_v5",
+      "id": "synthetic-fa0",
+      "dimension": "fix_availability",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "note": "exploit reference only; must score 0 (the C2 bug scored this 1)"
+    },
+    {
+      "group": "scoring_v5",
+      "id": "synthetic-fa1",
+      "dimension": "fix_availability",
+      "expected": 1,
+      "actual": 1,
+      "pass": true,
+      "note": "vendor-advisory reference, no fixed version"
+    },
+    {
+      "group": "scoring_v5",
+      "id": "synthetic-fa2",
+      "dimension": "fix_availability",
+      "expected": 2,
+      "actual": 2,
+      "pass": true,
+      "note": "patch-tagged reference"
+    },
+    {
+      "group": "http",
+      "id": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "expected": "live_200",
+      "observed": "200, 284790 bytes",
+      "pass": null,
+      "note": "stable government page"
+    },
+    {
+      "group": "http",
+      "id": "https://nvd.nist.gov/developers/vulnerabilities",
+      "expected": "live_200",
+      "observed": "200, 2092 bytes",
+      "pass": null,
+      "note": "stable government page"
+    },
+    {
+      "group": "http",
+      "id": "https://github.com/CVEProject/cvelistV5",
+      "expected": "live_200",
+      "observed": "200, 292881 bytes",
+      "pass": null,
+      "note": "stable repository page"
+    },
+    {
+      "group": "http",
+      "id": "https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/costin",
+      "expected": "live_200",
+      "observed": "200, 55212 bytes",
+      "pass": null,
+      "note": "stable conference page"
+    },
+    {
+      "group": "http",
+      "id": "https://httpbin.org/status/200",
+      "expected": "live_200",
+      "observed": "200, 0 bytes",
+      "pass": null,
+      "note": "test endpoint"
+    },
+    {
+      "group": "http",
+      "id": "https://httpbin.org/status/404",
+      "expected": "hard_404",
+      "observed": "404, 0 bytes",
+      "pass": null,
+      "note": "test endpoint"
+    },
+    {
+      "group": "http",
+      "id": "https://httpbin.org/status/410",
+      "expected": "hard_404",
+      "observed": "410, 0 bytes",
+      "pass": null,
+      "note": "test endpoint"
+    },
+    {
+      "group": "http",
+      "id": "https://www.netgear.com/support/pa-gap-nonexistent-7731/",
+      "expected": "hard_404",
+      "observed": "404, 39641 bytes",
+      "pass": null,
+      "note": "real vendor, missing page returns 404"
+    },
+    {
+      "group": "http",
+      "id": "https://www.tp-link.com/us/support/pa-gap-nonexistent-7731/",
+      "expected": "hard_404",
+      "observed": "404, 1867 bytes",
+      "pass": null,
+      "note": "real vendor, missing page returns 404"
+    },
+    {
+      "group": "http",
+      "id": "https://old.tenda.com.cn/error?path=/pa-gap-nonexistent-7731",
+      "expected": "hard_404",
+      "observed": "404, 153 bytes",
+      "pass": null,
+      "note": "real vendor, reached via two 302s, ends at 404"
+    },
+    {
+      "group": "http",
+      "id": "https://www.hikvision.com/en/pa-gap-nonexistent-7731/",
+      "expected": "soft_404",
+      "observed": "200, 29184 bytes",
+      "pass": null,
+      "note": "real vendor, missing page returns 200"
+    },
+    {
+      "group": "http",
+      "id": "https://httpbin.org/redirect-to?url=https%3A%2F%2Fhttpbin.org%2F",
+      "expected": "redirect_to_root",
+      "observed": "200 via 302, 9593 bytes",
+      "pass": null,
+      "note": "test endpoint, redirects to site root"
+    },
+    {
+      "group": "http",
+      "id": "https://httpbin.org/status/401",
+      "expected": "auth_or_paywall_gated",
+      "observed": "401, 0 bytes",
+      "pass": null,
+      "note": "test endpoint"
+    },
+    {
+      "group": "http",
+      "id": "https://httpbin.org/basic-auth/user/pass",
+      "expected": "auth_or_paywall_gated",
+      "observed": "401, 0 bytes",
+      "pass": null,
+      "note": "test endpoint, basic-auth challenge"
+    },
+    {
+      "group": "http",
+      "id": "https://httpbin.org/status/429",
+      "expected": "waf_challenge",
+      "observed": "429, 0 bytes",
+      "pass": null,
+      "note": "test endpoint, rate-limit status"
+    },
+    {
+      "group": "http",
+      "id": "https://httpbin.org/status/403",
+      "expected": "waf_challenge",
+      "observed": "403, 0 bytes",
+      "pass": null,
+      "note": "test endpoint; a bare 403 with no login page, classed as blocked"
+    },
+    {
+      "group": "http",
+      "id": "https://pa-gap-control.invalid/advisory",
+      "expected": "dns_failure",
+      "observed": "DNS failure",
+      "pass": null,
+      "note": "RFC 2606 reserved TLD, never resolves"
+    },
+    {
+      "group": "http",
+      "id": "https://expired.badssl.com/",
+      "expected": "tls_failure",
+      "observed": "TLS error",
+      "pass": null,
+      "note": "test endpoint, expired certificate"
+    },
+    {
+      "group": "http",
+      "id": "https://self-signed.badssl.com/",
+      "expected": "tls_failure",
+      "observed": "TLS error",
+      "pass": null,
+      "note": "test endpoint, self-signed certificate"
+    },
+    {
+      "group": "http",
+      "id": "https://wrong.host.badssl.com/",
+      "expected": "tls_failure",
+      "observed": "TLS error",
+      "pass": null,
+      "note": "test endpoint, hostname mismatch"
+    },
+    {
+      "group": "http",
+      "id": "http://10.255.255.1/",
+      "expected": "timeout",
+      "observed": "connect timeout",
+      "pass": null,
+      "note": "non-routable address, connection never completes"
+    }
+  ]
+}

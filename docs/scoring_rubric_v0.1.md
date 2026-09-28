@@ -38,12 +38,18 @@ because every vendor shown is in the final curated corpus):
   `cpe:2.3:h:cisco:router:*:*:*:*:*:*:*:*`. Every version-related field is `*`.
   The record says "a Cisco router" and nothing else -- no defender can tell
   whether their specific model/IOS version is affected from this record alone.
-- **Score 1 -- CVE-2009-5037** (Cisco ASA software). Matching CPE:
-  `cpe:2.3:o:cisco:adaptive_security_appliance_software:*:*:*:*:*:*:*:*` with
-  `versionEndExcluding: 8.2(2)`. A defender running ASA software knows "if I'm
-  below 8.2(2) I'm affected," but there is no lower bound, so a defender
-  running a very old, likely-also-affected-for-different-reasons version has
-  no signal either way from this field.
+- **Score 1 -- CVE-2012-0695** (Chrome OS on the Acer AC700, Samsung Series
+  5, and Cr-48 Chromebooks). The only versioned CPE is
+  `cpe:2.3:o:google:chrome_os:*:*:*:*:*:*:*:*` with
+  `versionEndIncluding: 17.0.963.26`; the three hardware CPEs are wildcards.
+  A defender knows anything at or below 17.0.963.26 is affected, but there is
+  no lower bound.
+
+  *Corrected 2026-09-27.* v0.1 used CVE-2009-5037 here. The positive-control
+  run showed that record also lists dozens of exact ASA versions, which the
+  rubric's own score-2 rule ("an exact, non-wildcard version string") scores
+  as 2, and the scorer agreed with the rubric. The example was wrong, not the
+  rule, so only the example changed.
 - **Score 2 -- CVE-2026-13050** (WatchGuard Fireware, triage era). Matching CPE:
   `cpe:2.3:o:watchguard:fireware:*:*:*:*:*:*:*:*` with `versionStartIncluding:
   12.0`, `versionEndExcluding: 12.12.1` (and three more bounded ranges for

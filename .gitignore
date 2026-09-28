@@ -20,3 +20,5 @@ data/*
 # Editor / OS
 .vscode/
 .DS_Store
+!data/corpus_manifest.json
+!data/positive_controls.json
