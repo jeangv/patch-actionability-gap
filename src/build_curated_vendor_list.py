@@ -1,18 +1,37 @@
 """Week 3 task (W3.6): prune the data-driven vendor candidate list
 (docs/vendor_candidates_v1.md, 553 vendors) into the curated list that gates
 corpus_filter's Include B rule (part:o/part:a + curated vendor + model-
-designator pattern).
+designator pattern) on the NVD path, AND corpus_filter_v5's vendor+category
+rule on the CVE List V5 path (see that module's docstring).
 
-This does NOT decide overall corpus membership. Include A (h_any) and
-Include C (o_firmware) already admit a CVE independent of any vendor list --
-they fire on CPE structure alone. Include B only adds part:o/part:a records
-that lack the `_firmware` suffix but do match a hyphenated model-designator
-product string (e.g. `dir-825`) for a vendor known to make embedded/IoT
-devices. So a vendor left off this list does not lose its CVEs that are
-already caught by Include A/C -- it only loses Include B's narrower
-supplemental catch. This keeps the stakes of any individual vendor
-inclusion/exclusion judgment call low, which is what makes automated,
-reproducible pruning defensible here instead of a hand-curated list.
+IMPORTANT -- the stakes of this list are NOT symmetric across the two
+paths that consume it, and that asymmetry is why the general-purpose-
+software override below exists. On the NVD path, Include A (h_any) and
+Include C (o_firmware) already admit a CVE independent of any vendor list
+-- they fire on CPE structure alone -- so a vendor left off this list only
+loses Include B's narrower supplemental catch there, which is genuinely
+low-stakes. On the V5 path there is no CPE-structural fallback: a vendor
+on this list is *directly* eligible for inclusion (paired with a
+description category-keyword match) with no second structural check. Peer
+review (Monika Schrenk, Sep 23 2026) found this had let Microsoft become
+the single largest V5-path vendor match (61,660 hits) before the v5 rule
+itself was tightened to require vendor+category jointly (see
+corpus_filter_v5.py); even after that fix, spot-checking the top general-
+purpose vendors' remaining matches (Microsoft 285, IBM 103, Dell 27,
+Google 16, Apple 7, all after the fix) found every sampled record was a
+false positive -- "Remote Desktop Gateway," "IBM Sterling File Gateway,"
+"Dell Secure Connect Gateway," Android/iOS camera-permission and modem
+bugs -- enterprise software features and mobile-OS components whose
+product names or descriptions happen to contain a category keyword, not
+embedded/IoT hardware. So this list's exclusions are NOT symmetric-risk
+housekeeping the way they are on the NVD path; excluding a vendor here
+measurably protects the V5-path corpus.
+
+This asymmetry is also why the general-purpose-software vendors below are
+now on the same manual override list as the silicon/enterprise/ICS
+vendors, even though Include A/C coverage for any of their genuine
+hardware CVEs (a CPE-tagged Google Nest device, say) is unaffected on the
+NVD path.
 
 Pruning rule, applied per vendor against its "Example products" column in
 vendor_candidates_v1.md (the 5 most frequent product strings for that
@@ -48,6 +67,19 @@ vendor):
         consumer/SMB devices).
       * ICS (Appendix B "industrial control systems"): Siemens, Schneider
         Electric, ABB, Moxa, Pepperl+Fuchs.
+      * general-purpose software/cloud (Appendix B "general-purpose
+        computers" -- extended here to these vendors' server/cloud/mobile-OS
+        product lines specifically, per the V5-path evidence above):
+        Microsoft, IBM, Dell, Google, Apple. Each does also sell genuine
+        embedded/IoT hardware in some corner of its catalog (a Google Nest
+        thermostat, an Apple AirPort router, a Dell embedded gateway
+        appliance), but on the V5 text/vendor path those products were not
+        what the vendor-match rule was actually catching -- 100% of the
+        sampled post-fix matches (Microsoft, IBM, Dell, Google, Apple) were
+        enterprise-software or mobile-OS records. Excluded here rather than
+        left in on the theory that a real hit might slip through: false
+        positives at this vendor's CVE volume overwhelm the handful of
+        genuine hardware CVEs these vendors might contribute either way.
     A vendor NOT on this list keeps its Include-A/C coverage regardless
     (e.g. Bosch and Lenovo also sell enterprise/ICS lines, but their listed
     example products here -- Bosch `cpp7` IP-camera firmware, Lenovo/
@@ -103,6 +135,15 @@ MANUAL_VENDOR_DENYLIST = {
     "abb": "industrial control systems",
     "moxa": "industrial Ethernet / ICS networking",
     "pepperl-fuchs": "industrial control systems",
+    # general-purpose software/cloud/mobile-OS (V5-path evidence, Sep 2026 --
+    # see module docstring): 100% of sampled post-fix V5 vendor-match hits
+    # for these vendors were enterprise-software or mobile-OS records, not
+    # embedded/IoT hardware.
+    "microsoft": "general-purpose/enterprise software (e.g. Remote Desktop Gateway, Windows) dominates this vendor's CVE count",
+    "ibm": "general-purpose enterprise software (e.g. Sterling File Gateway, Security Verify) dominates this vendor's CVE count",
+    "dell": "general-purpose enterprise software (e.g. Secure Connect Gateway) dominates this vendor's CVE count",
+    "google": "mobile OS (Android/Chrome) components dominate this vendor's CVE count",
+    "apple": "mobile/desktop OS (iOS/iPadOS/macOS) components dominate this vendor's CVE count",
 }
 
 

@@ -2,7 +2,7 @@
 
 Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-corpus discovery pass 2026-09-04). Gates **Include B** only -- see module docstring in `src/build_curated_vendor_list.py` for why a vendor excluded here does not lose CVEs already caught by Include A (`h_any`) or Include C (`o_firmware`).
 
-**Result:** 537 included / 16 excluded of 553 candidate vendors.
+**Result:** 532 included / 21 excluded of 553 candidate vendors.
 
 **Rule:** exclude if (a) the vendor is on the manual override list -- 16 vendors identifiable by name as predominantly silicon/chipset, enterprise/carrier networking, or ICS, where example products are bare part/model numbers no text pattern can categorize (see rationale in `src/build_curated_vendor_list.py`) -- or (b) every one of the vendor's top-5 example products (from the discovery pass) matches a soft-exclusion category pattern (`src/soft_exclusions.py`: enterprise datacenter/server, ICS, medical, automotive, mobile handset, general-purpose computer). Include otherwise.
 
@@ -26,8 +26,13 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 44 | abb | 12 | manual override: industrial control systems |
 | 50 | schneider-electric | 10 | manual override: industrial control systems |
 | 55 | realtek | 9 | manual override: silicon/chipset vendor, not a device vendor |
+| 58 | dell | 8 | manual override: general-purpose enterprise software (e.g. Secure Connect Gateway) dominates this vendor's CVE count |
 | 61 | pepperl-fuchs | 8 | manual override: industrial control systems |
+| 66 | ibm | 7 | manual override: general-purpose enterprise software (e.g. Sterling File Gateway, Security Verify) dominates this vendor's CVE count |
 | 102 | broadcom | 5 | manual override: silicon/chipset vendor, not a device vendor |
+| 119 | apple | 4 | manual override: mobile/desktop OS (iOS/iPadOS/macOS) components dominate this vendor's CVE count |
+| 127 | google | 4 | manual override: mobile OS (Android/Chrome) components dominate this vendor's CVE count |
+| 326 | microsoft | 1 | manual override: general-purpose/enterprise software (e.g. Remote Desktop Gateway, Windows) dominates this vendor's CVE count |
 
 ## Included vendors (curated list, gates Include B)
 
@@ -76,14 +81,12 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 54 | billion | 10 | 4 |
 | 56 | byzoro | 9 | 2 |
 | 57 | binardat | 9 | 2 |
-| 58 | dell | 8 | 31 |
 | 59 | advantech | 8 | 8 |
 | 60 | iptime | 8 | 348 |
 | 62 | syrotech | 8 | 2 |
 | 63 | level1 | 8 | 2 |
 | 64 | aqara | 8 | 6 |
 | 65 | nortel | 7 | 16 |
-| 66 | ibm | 7 | 24 |
 | 67 | seagate | 7 | 12 |
 | 68 | xiongmaitech | 7 | 180 |
 | 69 | milesight | 7 | 56 |
@@ -135,7 +138,6 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 116 | enphase | 5 | 2 |
 | 117 | selea | 5 | 22 |
 | 118 | cayman | 4 | 2 |
-| 119 | apple | 4 | 7 |
 | 120 | thomson | 4 | 4 |
 | 121 | mentor | 4 | 1 |
 | 122 | 2wire | 4 | 9 |
@@ -143,7 +145,6 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 124 | intellicom | 4 | 7 |
 | 125 | mercurycom | 4 | 6 |
 | 126 | verizon | 4 | 4 |
-| 127 | google | 4 | 44 |
 | 128 | draytek | 4 | 186 |
 | 129 | arris | 4 | 2 |
 | 130 | adcon | 4 | 1 |
@@ -342,7 +343,6 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 323 | zoom | 1 | 1 |
 | 324 | gigabyte | 1 | 1 |
 | 325 | innomedia | 1 | 1 |
-| 326 | microsoft | 1 | 1 |
 | 327 | micronet | 1 | 1 |
 | 328 | nexland | 1 | 1 |
 | 329 | arcowave_systems | 1 | 1 |

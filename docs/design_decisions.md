@@ -18,6 +18,16 @@ of that acceptance and where each decision landed in code/docs.
 | **D9** | Freeze verifiability | Commit a CVE ID manifest, a SHA-256 over the sorted ID list, and the CVE List V5 source commit hash. | `docs/corpus_freeze_manifest.md` |
 | **D10** | Enrichment status | Record `nvd_enriched` (derived: `configurations` non-empty) and `vulnStatus` (NVD) / `cveMetadata.state` (V5) per record at collection, as supplementary fields -- not used to gate inclusion. | `docs/cna_vs_nvd_scoring_split.md` |
 
+## Post-lock corrections (Week 5)
+
+The rule itself was frozen at PR2. What follows are bug fixes in how the
+code implemented it, found by peer review on Video 2.
+
+| # | Correction | What changed | Landed in |
+|---|---|---|---|
+| **C1** | V5-path inclusion rule was looser than the NVD path | v1 admitted a record on a curated-vendor match alone, or on a category keyword alone. v2 needs a firmware-suffixed product, or a curated vendor and a category keyword together, which is what Include B already required on the NVD side. Microsoft, IBM, Dell, Google, and Apple went on the manual exclusion list after every sampled post-fix match from them turned out to be enterprise software or mobile OS records. The 2024 to 2026 V5-only share dropped from the 68% reported in PR2 to 3.1% (281 of 8,969). Raised by Monika Schrenk (Sep 23), with Travis Carlisle, JP Valentine, Albert Dinh, and Mizanur Rahman independently flagging the overlap. | `src/corpus_filter_v5.py`, `src/build_curated_vendor_list.py`, `docs/v5_vs_nvd_exclusion_count.md` |
+| **C2** | `score_fix_availability_v5` could never return 0 | Score 1 fired whenever a record had any reference at all. It now needs a `vendor-advisory` tag or fix language, matching the NVD scorer. No published number used this function, so nothing reported had to be restated. Raised by Monika Schrenk. | `src/identifiability_scorer.py` |
+
 ## PR1 open questions closed by this pass
 
 Per `PR2_Working_State.md` Section 4:

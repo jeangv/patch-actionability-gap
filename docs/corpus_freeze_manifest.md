@@ -50,15 +50,20 @@ document says so rather than presenting an estimate as final.** What exists:
 - The Week 4 soft-exclusion recheck (`docs/w4_soft_exclusion_recheck.md`)
   measured a 2.5% (5/200) flip-to-excluded rate on the already-collected
   pilot sample once soft exclusions are applied.
-- The CVE List V5 population pass (`docs/v5_corpus_pass_2024_2026.md`) found
-  21,528 V5-path matches across 2024-2026 alone (142,779 scanned), against
-  8,663 NVD-path matches for the identical window (`docs/nvd_2024_onward_pass.md`,
-  157,109 scanned live). The two ID sets overlap by only 3,077 -- see
-  `docs/v5_vs_nvd_exclusion_count.md`: **18,451 records (68% of the
-  27,114-record combined corpus for this window alone) would be missed
-  entirely under an NVD-only sampling frame.** This is far larger than a
-  percentage adjustment to the old NVD-only number (32,964) could capture,
-  which is why the final frozen N is not estimated by scaling that number.
+- The CVE List V5 population pass (`docs/v5_corpus_pass_2024_2026.md`,
+  corrected 2026-09-24 after a peer-review-caught corpus-filter bug -- see
+  `docs/v5_vs_nvd_exclusion_count.md` for the full correction) found 492
+  V5-path matches across 2024-2026 alone (142,779 scanned), against 8,688
+  NVD-path matches for the identical window (`docs/nvd_2024_onward_pass.md`,
+  162,421 scanned live). The two ID sets overlap on 211 records -- see
+  `docs/v5_vs_nvd_exclusion_count.md`: **281 records (3.1% of the
+  8,969-record combined corpus for this window alone) would be missed
+  entirely under an NVD-only sampling frame.** An earlier version of this
+  pass (reported in PR2) had a corpus-filter bug that let general-purpose
+  software vendors flood the V5 path and produced a since-retracted 68%
+  figure; the corrected 3.1% is a real but far more modest effect than
+  originally reported, and is not estimated by scaling the old NVD-only
+  number (32,964) either.
 
 **Scope decision (executive call, stated explicitly):** computing the final
 frozen N requires one more full pass -- NVD 1999-2023 plus CVE List V5

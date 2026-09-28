@@ -71,7 +71,15 @@ def main() -> None:
             had_cpe += 1
         if decision.ambiguous:
             ambiguous += 1
-        soft_excl_counts.update(decision.soft_exclusion_tags)
+        if decision.include_reasons:
+            # Only records that also matched an inclusion signal, matching
+            # the "among records that also matched inclusion" report label
+            # below -- previously counted soft-exclusion hits across every
+            # scanned record regardless of inclusion, which produced large,
+            # misleading counts (e.g. hundreds of ICS/medical hits) even
+            # when `ambiguous` -- the actually-relevant tiebreaker count --
+            # was 0. Found while verifying an unrelated bug report (Sep 2026).
+            soft_excl_counts.update(decision.soft_exclusion_tags)
         if decision.included:
             included += 1
             per_year_included[year] += 1
@@ -79,7 +87,7 @@ def main() -> None:
             for reason in decision.include_reasons:
                 tag = reason.split(":", 1)[0]
                 reason_tag_counts[tag] += 1
-                if tag == "v5_vendor_match":
+                if tag == "v5_vendor_and_category":
                     vendor = reason.split(":", 2)[1].strip()
                     vendor_counts[vendor] += 1
         if total % 20000 == 0:

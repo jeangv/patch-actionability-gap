@@ -133,12 +133,24 @@ def score_identifiability_v5(record: dict) -> tuple[int, str]:
 
 
 def score_fix_availability_v5(record: dict) -> tuple[int, str]:
+    """v2, corrected after peer review (Monika Schrenk, Sep 23 2026): v1's
+    score-1 branch fired on `cna.get("references")` truthiness alone --
+    nearly every CNA record has at least one reference regardless of
+    content, so score 0 was effectively unreachable. v2 requires a
+    vendor-advisory-tagged reference (the V5 schema's analog of the NVD
+    path's "Vendor Advisory" reference tag) or explicit fix language,
+    exactly mirroring score_fix_availability_nvd's Patch/Vendor-Advisory
+    duality -- the mere presence of *some* reference (an issue tracker, a
+    third-party writeup, an exploit PoC, etc.) no longer counts."""
     cna = record.get("containers", {}).get("cna", {})
     has_patch_ref = False
+    has_advisory_ref = False
     for ref in cna.get("references", []):
         tags = [t.lower() for t in (ref.get("tags") or [])]
         if "patch" in tags:
             has_patch_ref = True
+        if "vendor-advisory" in tags:
+            has_advisory_ref = True
 
     desc = ""
     for d in cna.get("descriptions", []):
@@ -156,6 +168,6 @@ def score_fix_availability_v5(record: dict) -> tuple[int, str]:
 
     if has_patch_ref or has_unaffected_version:
         return 2, "reference tagged patch, or an explicit unaffected/fixed version is stated"
-    if has_fix_language or cna.get("references"):
-        return 1, "fix language present or a reference exists, but no patch tag or fixed version stated"
-    return 0, "no references and no fix language in description"
+    if has_advisory_ref or has_fix_language:
+        return 1, "reference tagged vendor-advisory or fix language present, but no patch tag or fixed version stated"
+    return 0, "no patch/vendor-advisory reference and no fix language in description"

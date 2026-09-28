@@ -1,49 +1,98 @@
-# V5-vs-NVD Exclusion Count (Week 3, W3.5) -- Headline Finding
+# V5-vs-NVD Exclusion Count (Week 3, W3.5) -- Corrected
 
-Direct comparison of the two corpus-membership paths over the identical
-2024-01-01-onward window, computed from the ID sets in
-`docs/v5_corpus_pass_2024_2026.md` (V5 path, 142,779 records scanned locally)
-and `docs/nvd_2024_onward_pass.md` (NVD path, 157,109 CVEs scanned live via
-the NVD API 2.0 for the same start date through 2026-09-15).
+**This finding was wrong in the original PR2 draft, not just imprecise, and
+is corrected here after peer review (Monika Schrenk, Travis Carlisle, JP
+Valentine -- Sep 23-24, 2026) independently flagged the same symptom (an
+implausibly low 11% V5/NVD overlap) and Monika specifically diagnosed the
+root cause. See `docs/design_decisions.md` and
+`2026-10-04_Progress Report 3/PR3_Feedback_To_Address.md` for the full
+review trail.**
 
-| | Count |
-|---|---:|
-| V5-path included | 21,528 |
-| NVD-path included | 8,663 |
-| **Overlap (both paths agree)** | 3,077 |
-| **V5-only -- NVD path missed these entirely** | **18,451** |
-| NVD-only -- V5 text/vendor rule missed these | 5,586 |
-| **Union -- combined OR corpus for this window** | **27,114** |
+## What was wrong
 
-**This is the number the CVE List V5 pivot exists to produce.** For the
-2024-2026 window alone, the NVD-enrichment-dependent path finds less than a
-third (8,663 of 27,114, 32%) of the embedded/IoT candidates the combined
-corpus contains. 18,451 records -- 68% of the true combined population for
-this window -- would never have entered the study at all under PR1's
-original NVD-API-only sampling frame. This is a substantially larger effect
-than the pilot-scale numbers suggested it might be, and it is the strongest
-evidence yet for Mizanur's peer-review argument (D-register MR-1): an
-NVD-API-only corpus does not just shrink the sample, it changes *which*
-records are in it, in a way that plausibly correlates with exactly the
-enrichment-triage factors (KEV membership, federal/critical-software status)
-that have nothing to do with a device's actual patch actionability.
+`corpus_filter_v5.classify()`'s vendor-match rule (v1) admitted a record if
+its vendor was on the curated list, full stop -- no requirement that the
+description also indicate an embedded/IoT product. Because the curated
+vendor list included large general-purpose vendors (Microsoft, Google,
+Apple, IBM, Dell -- each of which does also sell some genuine embedded/IoT
+hardware, which is why they were on the list at all), this let those
+vendors' entire CVE volume flood the V5-path corpus: Microsoft alone
+matched 61,660 records, nearly all of them unrelated Windows/Remote Desktop
+Gateway/Azure records, not embedded devices. A second, independent bug
+(`identifiability_scorer.score_fix_availability_v5` scoring 1 for the mere
+presence of any reference, not requiring a patch tag or vendor-advisory tag
+per the rubric) was found in the same review pass and fixed alongside this
+one, though it did not affect the corpus-membership numbers below.
 
-## Why the overlap is small (3,077 of 27,114, 11%)
+**Fix (v2):** the V5-path text rule now requires vendor membership **and**
+a category-keyword match together (mirroring Include B on the NVD path,
+which already required vendor membership and a model-designator pattern
+together) -- see `corpus_filter_v5.py`. Spot-checking the post-fix matches
+for the five general-purpose vendors found 100% were still false positives
+("Remote Desktop Gateway," "IBM Sterling File Gateway," "Dell Secure
+Connect Gateway," Android/iOS camera and modem permission bugs), so those
+five vendors were also added to the manual exclusion list
+(`build_curated_vendor_list.py`) that already excluded chipset and
+enterprise-networking vendors on the same basis.
 
-The two paths use genuinely different signals -- CPE structure on the NVD
-side, vendor-name/category-keyword text matching on the V5 side -- so a
-small intersection is expected, not a bug: a record needs both a
-CPE-structured NVD enrichment AND to independently pass the V5 text rule to
-land in the overlap. The NVD-only 5,586 is itself worth noting: these are
-records where NVD's CPE data was populated but the V5 CNA-side text (vendor
-name, product string, description) didn't trip the category-keyword or
-curated-vendor match -- most likely CNA-supplied records using non-obvious
-product naming that the text heuristic doesn't catch, a known limitation of
-a text-based rule (documented in `src/corpus_filter_v5.py`).
+## Corrected comparison
 
-## Scope note
+Same method as before -- direct comparison of the two corpus-membership
+paths over the identical 2024-01-01-onward window -- re-run against the
+corrected rule. V5 path: local sparse checkout, 142,779 records
+(`docs/v5_corpus_pass_2024_2026.md`). NVD path: live NVD API 2.0 scan,
+162,421 CVEs (`docs/nvd_2024_onward_pass.md`, re-run 2026-09-24, 9 days of
+new records beyond the original run explains the higher scan count).
 
-This comparison covers 2024-2026 only (the backlog + triage eras), per the
-scope decision in `docs/v5_corpus_pass.py`. The corpus freeze
-(`docs/corpus_freeze_manifest.md`) applies the same combined OR-membership
-rule to the full historical range as a Week 5 task.
+| | Original (buggy) | Corrected |
+|---|---:|---:|
+| V5-path included | 21,528 | **492** |
+| NVD-path included | 8,663 | **8,688** |
+| Overlap | 3,077 | **211** |
+| V5-only (NVD missed these) | 18,451 | **281** |
+| NVD-only (V5 text rule missed these) | 5,586 | **8,477** |
+| Union (combined OR corpus) | 27,114 | **8,969** |
+| **V5-only as % of union (the old "68%" headline)** | **68%** | **3.1%** |
+
+**Corrected finding: for 2024-2026, the CVE List V5 pivot adds 281 records
+(3.1% of the combined corpus) that the NVD-only path would have missed --
+not 68%.** The NVD-CPE path is the dominant source for this window (8,688
+of 8,969 union records, 96.9%), and V5 mostly re-discovers records the NVD
+path already has (211 of 492 V5 matches, 42.9%, overlap with NVD) rather
+than surfacing a systematically different population.
+
+## What this means for the project
+
+The corrected finding is a much more modest justification for the pivot
+than PR2 claimed, and that has to be stated plainly rather than
+downplayed: the original 68% number was the report's headline result, cited
+by name in Video 2 and praised by multiple peer reviewers as "especially
+compelling." It was wrong. The corrected 3.1% figure still supports keeping
+V5 in an OR-combined corpus (some genuinely novel records are still
+uniquely found there, and the CNA-vs-NVD provenance split remains
+architecturally necessary regardless of corpus-size arguments -- see
+`docs/cna_vs_nvd_scoring_split.md`, which is unaffected by this bug), but
+the *size* of the effect can no longer be the centerpiece argument for the
+pivot. The centerpiece argument reverts to the qualitative one from
+Preliminary Finding #2 (PR1): an NVD-only corpus is selected on NVD's own
+enrichment-triage decisions, which is a bias argument independent of how
+many extra records V5 happens to contribute.
+
+**Scope note carried over unchanged:** this comparison still covers
+2024-2026 only; the full 1999-2023 comparison remains a Week 5 task
+(`docs/corpus_freeze_manifest.md`), and will need to be run against this
+corrected rule, not the original one.
+
+## Why the corrected overlap is still not "high"
+
+211 of 492 V5 matches (42.9%) also appear in the NVD path -- a real,
+moderate overlap, not the near-total agreement a single well-behaved
+signal might produce, but nowhere near the near-total disagreement the
+buggy 11% figure implied either. The remaining 281 V5-only records are
+plausible genuine discoveries: CVE List V5's CNA-supplied text can name a
+vendor and describe a product before NVD has enriched it with a CPE, so
+some real lag-driven complementarity is expected and consistent with the
+project's own three-era/triage-policy argument (Section I-C of the final
+report draft). The 42.9% overlap is left unexplained further here; a
+larger, full-history run (Week 5) would give a more stable estimate than
+this 2024-2026-only window.

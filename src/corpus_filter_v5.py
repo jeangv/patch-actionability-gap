@@ -24,21 +24,34 @@ enrichment-side (CPE-based) signal. There is no single file that carries
 both, so they cannot be scored from one record the way PR1's original design
 sketch assumed.
 
-Inclusion rule (V5 path):
+Inclusion rule (V5 path) -- v2, corrected after peer review (Monika
+Schrenk, Sep 23 2026) found that v1's rule let general-purpose-software
+vendors (Microsoft top V5 vendor-match at 61,660 hits; also Google, Apple,
+IBM, Dell on the curated list) flood the corpus, because v1 treated vendor
+membership and description-keyword matching as *independent* triggers --
+either alone was sufficient. That is looser than the NVD path, where
+Include B requires vendor membership AND a model-designator product-name
+match together. v2 requires the same kind of combined signal on the V5
+path:
+  - any `affected[].product` string ends in `_firmware`/`_Firmware` --
+    sufficient alone, parity with Include C on the NVD path (rare in V5,
+    but a strong single signal when present), OR
   - vendor (from any `affected[].vendor`) is on the curated vendor list
     (data/curated_vendor_list.json, same list Include B uses on the NVD
-    path), OR
-  - the English description matches the same category keyword pattern used
-    to build that curated list (discover_vendor_candidates.CATEGORY_PATTERN:
-    router/access point/gateway/IP camera/NAS/etc.), OR
-  - any `affected[].product` string ends in `_firmware`/`_Firmware` (rare in
-    V5 -- CNAs mostly write firmware version numbers into `versions[]`, not
-    into the product name the way NVD's CPE does -- but checked for parity
-    with Include C on the NVD path).
+    path) **AND** the English description matches the category keyword
+    pattern (discover_vendor_candidates.CATEGORY_PATTERN: router/access
+    point/gateway/IP camera/NAS/etc.) -- neither signal alone is enough,
+    exactly like Include B.
   - If a record DOES carry `cpeApplicability` (either in the CNA container
     or an ADP container), it is also run through corpus_filter.classify()'s
     CPE-based rule and included if that matches -- this is a strict OR with
     the text-based rule above, not a replacement for it.
+
+v1's unconditional `CATEGORY_PATTERN.search(desc)` branch (no vendor
+constraint at all) is removed in v2 for the same reason: a description
+merely containing a word like "gateway" (e.g. an API gateway or payment
+gateway product) admitted the record regardless of vendor, which is even
+looser than the vendor-match-alone issue Monika found.
 
 Exclusion: same soft-exclusion categories (src/soft_exclusions.py) applied
 to the description text, plus `state != "PUBLISHED"` (V5's equivalent of
@@ -126,14 +139,16 @@ def classify(record: dict, vendor_list=None) -> V5Decision:
     had_cpe = False
 
     # Text/vendor path (the common case -- see module docstring).
+    # v2: vendor membership and category-keyword match must both be present
+    # together (mirrors Include B on the NVD path) -- neither is sufficient
+    # alone. See module docstring "Inclusion rule (V5 path) -- v2" for why.
     desc = _all_descriptions_text(record)
+    desc_matches_category = bool(CATEGORY_PATTERN.search(desc))
     for vendor, product in _affected_vendor_products(record):
-        if vendor.lower() in vendor_list:
-            include_reasons.append(f"v5_vendor_match: {vendor}:{product}")
         if FIRMWARE_SUFFIX_RE.search(product):
             include_reasons.append(f"v5_firmware_suffix: {vendor}:{product}")
-    if CATEGORY_PATTERN.search(desc):
-        include_reasons.append("v5_category_keyword: description matched category pattern")
+        elif vendor.lower() in vendor_list and desc_matches_category:
+            include_reasons.append(f"v5_vendor_and_category: {vendor}:{product}")
 
     # CPE path (rare -- only fires when a CNA or ADP happened to supply CPE).
     for cpe_container in _find_cpe_applicability_node(record):
