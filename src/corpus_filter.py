@@ -53,6 +53,7 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
 
+from scope_denylist import scope_denied
 from soft_exclusions import classify_soft_exclusions
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -188,6 +189,13 @@ def classify(
     soft_exclusion_tags = {m.category for m in soft_matches}
     for m in soft_matches:
         exclude_reasons.append(f"{m.category}: matched {m.matched_text!r}")
+
+    # Vendor scope denylist (Week 6, C4): Include A and C fire on CPE
+    # structure alone, so without this a Qualcomm chipset or Intel CPU
+    # record got in. See src/scope_denylist.py.
+    matched_vendors = {m.vendor for m in rule_matches}
+    if scope_denied(matched_vendors):
+        exclude_reasons.append(f"scope_denylist: {', '.join(sorted(matched_vendors))}")
 
     ambiguous = bool(rule_matches) and bool(exclude_reasons)
     included = bool(rule_matches) and not exclude_reasons

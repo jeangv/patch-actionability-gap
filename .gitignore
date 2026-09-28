@@ -22,3 +22,6 @@ data/*
 .DS_Store
 !data/corpus_manifest.json
 !data/positive_controls.json
+!data/freeze/
+data/freeze/*
+!data/freeze/characterization_summary.json

@@ -8,6 +8,11 @@ root cause. See `docs/design_decisions.md` and
 `2026-10-04_Progress Report 3/PR3_Feedback_To_Address.md` for the full
 review trail.**
 
+
+## Final result: full history, frozen corpus (Week 6)
+
+The 3.1% below is the v2 rule on 2024 to 2026 only and is superseded. The frozen corpus uses the v3 V5 rule (C3) and the vendor scope denylist on both paths (C4): 21,990 CVEs, 2,878 found by both paths, 18,182 by NVD only, 930 by V5 only. The V5-only share by era is in `docs/corpus_freeze_results.md`; it is small before 2024 and large in the 2026 triage era, which is the selection argument in numbers.
+
 ## What was wrong
 
 `corpus_filter_v5.classify()`'s vendor-match rule (v1) admitted a record if
@@ -78,10 +83,7 @@ Preliminary Finding #2 (PR1): an NVD-only corpus is selected on NVD's own
 enrichment-triage decisions, which is a bias argument independent of how
 many extra records V5 happens to contribute.
 
-**Scope note carried over unchanged:** this comparison still covers
-2024-2026 only; the full 1999-2023 comparison remains a Week 5 task
-(`docs/corpus_freeze_manifest.md`), and will need to be run against this
-corrected rule, not the original one.
+**Scope note:** this comparison covers 2024-2026 only. The full-history result is at the top of this document.
 
 ## Why the corrected overlap is still not "high"
 
@@ -95,4 +97,4 @@ some real lag-driven complementarity is expected and consistent with the
 project's own three-era/triage-policy argument (Section I-C of the final
 report draft). The 42.9% overlap is left unexplained further here; a
 larger, full-history run (Week 5) would give a more stable estimate than
-this 2024-2026-only window.
+this 2024-2026-only window. The full-history run is now done; see the top of this document.

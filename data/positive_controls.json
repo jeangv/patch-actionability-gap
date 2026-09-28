@@ -1,5 +1,5 @@
 {
-  "built_utc": "2026-09-28T03:36:37+00:00",
+  "built_utc": "2026-09-28T17:59:35+00:00",
   "controls": [
     {
       "group": "membership",
@@ -72,6 +72,54 @@
       "actual": false,
       "pass": true,
       "note": "Apple macOS camera extension"
+    },
+    {
+      "group": "membership_nvd",
+      "id": "CVE-2022-46641",
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "note": "D-Link DIR-846 router"
+    },
+    {
+      "group": "membership_nvd",
+      "id": "CVE-2023-37144",
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "note": "Tenda AC10 router"
+    },
+    {
+      "group": "membership_nvd",
+      "id": "CVE-2023-21633",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Qualcomm modem interface layer, mobile chipset (C4)"
+    },
+    {
+      "group": "membership_nvd",
+      "id": "CVE-2021-0146",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Intel processors, general-purpose computing (C4)"
+    },
+    {
+      "group": "membership_nvd",
+      "id": "CVE-2019-10931",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Siemens SIPROTEC 5, industrial control (C4)"
+    },
+    {
+      "group": "membership_nvd",
+      "id": "CVE-2012-5037",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "note": "Cisco Catalyst 6500/7600, enterprise core switching (C4)"
     },
     {
       "group": "scoring_nvd",
@@ -183,7 +231,7 @@
       "group": "http",
       "id": "https://github.com/CVEProject/cvelistV5",
       "expected": "live_200",
-      "observed": "200, 292881 bytes",
+      "observed": "200, 292875 bytes",
       "pass": null,
       "note": "stable repository page"
     },

@@ -65,6 +65,7 @@ from dataclasses import dataclass, field
 
 from corpus_filter import FIRMWARE_SUFFIX_RE, classify as classify_nvd, load_default_vendor_list
 from discover_vendor_candidates import CATEGORY_PATTERN
+from scope_denylist import scope_denied
 from soft_exclusions import classify_soft_exclusions
 
 # A single token with both letters and digits and no spaces: A15, AC18,
@@ -153,14 +154,18 @@ def classify(record: dict, vendor_list=None) -> V5Decision:
     # says "router".
     desc = _all_descriptions_text(record)
     desc_matches_category = bool(CATEGORY_PATTERN.search(desc))
+    text_vendors: set[str] = set()
     for vendor, product in _affected_vendor_products(record):
         on_list = vendor.lower() in vendor_list
         if FIRMWARE_SUFFIX_RE.search(product):
             include_reasons.append(f"v5_firmware_suffix: {vendor}:{product}")
+            text_vendors.add(vendor)
         elif on_list and desc_matches_category:
             include_reasons.append(f"v5_vendor_and_category: {vendor}:{product}")
+            text_vendors.add(vendor)
         elif on_list and MODEL_NUMBER_RE.match(product):
             include_reasons.append(f"v5_vendor_and_model: {vendor}:{product}")
+            text_vendors.add(vendor)
 
     # CPE path (rare -- only fires when a CNA or ADP happened to supply CPE).
     for cpe_container in _find_cpe_applicability_node(record):
@@ -180,6 +185,13 @@ def classify(record: dict, vendor_list=None) -> V5Decision:
     soft_exclusion_tags = {m.category for m in soft_matches}
     for m in soft_matches:
         exclude_reasons.append(f"{m.category}: matched {m.matched_text!r}")
+
+    # Vendor scope denylist, same rule as the NVD path (src/scope_denylist.py).
+    # A CPE-path match already went through corpus_filter.classify, which
+    # applies it, so only a record admitted by the text clauses alone is checked.
+    cpe_included = any(r.startswith("v5_cpe_applicability") for r in include_reasons)
+    if text_vendors and not cpe_included and scope_denied(text_vendors):
+        exclude_reasons.append(f"scope_denylist: {', '.join(sorted(text_vendors))}")
 
     ambiguous = bool(include_reasons) and bool(exclude_reasons)
     included = bool(include_reasons) and not exclude_reasons

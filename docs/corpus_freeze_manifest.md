@@ -1,6 +1,6 @@
 # Corpus Freeze Manifest (Week 4, W4.2) -- DESIGN LOCK
 
-**As of this document, the corpus membership rule, era boundaries, vendor
+**As of this document, the corpus membership rule (with corrections C1 to C4), era boundaries, vendor
 list, and scoring rubric (`docs/scoring_rubric_v0.1.md`) are frozen.**
 Anything found wrong after this point is a documented limitation, not a
 revision -- per the Week 4 milestone stated in PR1's timeline.
@@ -16,9 +16,12 @@ A CVE is in the corpus if **either**:
   `included=True`,
 
 evaluated independently, per `docs/cna_vs_nvd_scoring_split.md`. Both apply
-the same soft-exclusion categories (`src/soft_exclusions.py`) and the same
-curated vendor list (`data/curated_vendor_list.json`, 537 of 553 candidate
-vendors, see `docs/curated_vendor_list.md`).
+the same soft-exclusion categories (`src/soft_exclusions.py`), the same
+curated vendor list (`data/curated_vendor_list.json`, 527 of 553 candidate
+vendors, see `docs/curated_vendor_list.md`), and, since C4, the same vendor
+scope denylist (`src/scope_denylist.py`, 28 vendors): a record is excluded
+when every vendor that triggered it is on the list. The V5 rule is v3 (C3).
+Post-lock corrections C1 to C4 are in `docs/design_decisions.md`.
 
 ## Era boundaries (frozen, unchanged from PR1)
 
@@ -35,61 +38,21 @@ as a separate pre-2011 ranking there).
 
 ## Vendor list (frozen)
 
-`data/curated_vendor_list.json` -- 537 vendors, pruned from the 553-vendor
+`data/curated_vendor_list.json` -- 527 vendors, pruned from the 553-vendor
 data-driven candidate list by `src/build_curated_vendor_list.py`. Full
 decision table: `docs/curated_vendor_list.md`.
 
-## Corpus N -- status and scope decision
+## Corpus N -- frozen 2026-09-28
 
-**Not yet re-computed end to end against the frozen rule above, and this
-document says so rather than presenting an estimate as final.** What exists:
+**21,990 CVEs**: 2,878 admitted by both paths, 18,182 by NVD only, 930 by CVE List V5 only. NVD path: 21,060 of 397,944 CVEs crawled from 1999 to 2026-09-28 (`src/freeze_nvd_pass.py`). V5 path: 3,808 of 391,971 records (`src/freeze_v5_pass.py`). Published before 2011: 1,403. Per-era counts and V5-only shares: `docs/corpus_freeze_results.md`.
 
-- The original full-historical NVD discovery pass (`docs/vendor_candidates_v1.md`,
-  2026-09-04): 386,755 CVEs scanned, 32,964 matched **the pre-soft-exclusion,
-  pre-Include-B rule** (Include A + Include C only).
-- The Week 4 soft-exclusion recheck (`docs/w4_soft_exclusion_recheck.md`)
-  measured a 2.5% (5/200) flip-to-excluded rate on the already-collected
-  pilot sample once soft exclusions are applied.
-- The CVE List V5 population pass (`docs/v5_corpus_pass_2024_2026.md`,
-  corrected 2026-09-24 after a peer-review-caught corpus-filter bug -- see
-  `docs/v5_vs_nvd_exclusion_count.md` for the full correction) found 492
-  V5-path matches across 2024-2026 alone (142,779 scanned), against 8,688
-  NVD-path matches for the identical window (`docs/nvd_2024_onward_pass.md`,
-  162,421 scanned live). The two ID sets overlap on 211 records -- see
-  `docs/v5_vs_nvd_exclusion_count.md`: **281 records (3.1% of the
-  8,969-record combined corpus for this window alone) would be missed
-  entirely under an NVD-only sampling frame.** An earlier version of this
-  pass (reported in PR2) had a corpus-filter bug that let general-purpose
-  software vendors flood the V5 path and produced a since-retracted 68%
-  figure; the corrected 3.1% is a real but far more modest effect than
-  originally reported, and is not estimated by scaling the old NVD-only
-  number (32,964) either.
-
-**Scope decision (executive call, stated explicitly):** computing the final
-frozen N requires one more full pass -- NVD 1999-2023 plus CVE List V5
-1999-2023 -- against the now-frozen combined rule. That crawl was not run in
-this pass: the 2024-2026 V5 population pass alone took ~2.5 minutes against
-a local sparse checkout (142,781 records), but the *pre-2024* V5 population
-is ~25 more year-directories with no local checkout yet, and the matching
-NVD-side full-historical crawl (see `docs/nvd_2024_onward_pass.md` for the
-2024-onward rate) would run roughly 45-50 minutes end to end. Rather than
-either block this progress report on that crawl or publish an estimated N
-next to numbers that are exact, **the frozen rule, era boundaries, and
-vendor list above are locked now; the exact frozen N is a first task of
-Week 5**, computed by `src/full_corpus_freeze_pass.py` (to be written) and
-committed as `data/corpus_manifest.json` with the SHA-256 and V5 source
-commit hash below.
+The first freeze that day gave 33,684 CVEs. The source characterization showed the NVD path admitting chipset, enterprise, industrial, and general-purpose vendors, so C4 applied the vendor scope denylist to both paths before the lock (11,665 NVD records removed; the NVD crawl output is filtered in `src/freeze_manifest.py`, which gives the same set a re-crawl would because each record's `vendors` field is exactly the vendors that triggered it; the V5 pass was re-run). A post-C4 sample still finds about a third of NVD-only records out of scope; that rate is stated as a limitation and the Week 8 results add a description-based screen (`docs/characterization_hand_check.md`).
 
 ## Verifiability (D9)
 
-Once the full pass runs (Week 5):
-
-- `data/corpus_manifest.json` -- sorted list of every included CVE ID.
-- SHA-256 over the sorted, newline-joined ID list, recorded alongside.
-- The CVE List V5 source commit hash used for that pass (the V5 repo is a
-  live, continuously-updated corpus, so the manifest must pin the exact
-  commit it was computed against to be reproducible -- `git -C
-  data/v5_repo rev-parse HEAD` at pass time).
+- `data/corpus_manifest.json` -- counts, the sorted list of every included CVE ID, the rule string, and the scope denylist counts.
+- SHA-256 over the sorted, newline-joined ID list: `b8d8b34f29225332a823beb14d3980cb0974ea914e04e700c77a98cdf271be4e`.
+- CVE List V5 source commit: `0fb6651236ba3f33f5a6416447cde620a4842716`.
 
 ## Control corpus matching variables (D7, added to the freeze)
 

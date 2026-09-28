@@ -6,6 +6,12 @@ pipeline is run against them. Three groups:
   membership  CVEs that corpus_filter_v5 must include or exclude. The
               excluded ones are real false positives found during the
               Week 5 bug fix.
+  membership_nvd
+              CVEs that corpus_filter (NVD path) must include or exclude,
+              fetched live from the NVD API. The excluded ones are real
+              out-of-scope records from the first characterization draw
+              that the C4 vendor scope denylist removes; until C4 there was
+              no NVD-side membership control, which is how they got in.
   scoring     CVEs with a known Dimension 1 or 2 score, taken from the
               worked examples in docs/scoring_rubric_v0.1.md, plus three
               synthetic V5 records that pin down the 0/1/2 boundaries of
@@ -31,7 +37,9 @@ from pathlib import Path
 import requests
 from dotenv import load_dotenv
 
+from corpus_filter import classify as classify_nvd
 from corpus_filter_v5 import classify as classify_v5
+from nvd_client import NvdClient
 from identifiability_scorer import (
     score_fix_availability_nvd,
     score_fix_availability_v5,
@@ -57,6 +65,15 @@ MEMBERSHIP = [
     ("CVE-2024-22457", False, "Dell Secure Connect Gateway, enterprise software"),
     ("CVE-2024-44100", False, "Google Pixel modem component, mobile handset"),
     ("CVE-2024-27795", False, "Apple macOS camera extension"),
+]
+
+MEMBERSHIP_NVD = [
+    ("CVE-2022-46641", True, "D-Link DIR-846 router"),
+    ("CVE-2023-37144", True, "Tenda AC10 router"),
+    ("CVE-2023-21633", False, "Qualcomm modem interface layer, mobile chipset (C4)"),
+    ("CVE-2021-0146", False, "Intel processors, general-purpose computing (C4)"),
+    ("CVE-2019-10931", False, "Siemens SIPROTEC 5, industrial control (C4)"),
+    ("CVE-2012-5037", False, "Cisco Catalyst 6500/7600, enterprise core switching (C4)"),
 ]
 
 NVD_SCORING = [
@@ -139,6 +156,13 @@ def main() -> None:
         rec = load_v5(cve_id)
         actual = classify_v5(rec).included if rec else None
         rows.append({"group": "membership", "id": cve_id, "expected": expected, "actual": actual,
+                     "pass": actual == expected, "note": note})
+
+    client = NvdClient()
+    for cve_id, expected, note in MEMBERSHIP_NVD:
+        vulns = client.get_page({"cveId": cve_id}).get("vulnerabilities", [])
+        actual = classify_nvd(vulns[0]["cve"]).included if vulns else None
+        rows.append({"group": "membership_nvd", "id": cve_id, "expected": expected, "actual": actual,
                      "pass": actual == expected, "note": note})
 
     for cve_id, dim, expected, note in NVD_SCORING:

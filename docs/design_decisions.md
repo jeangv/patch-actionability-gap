@@ -18,15 +18,18 @@ of that acceptance and where each decision landed in code/docs.
 | **D9** | Freeze verifiability | Commit a CVE ID manifest, a SHA-256 over the sorted ID list, and the CVE List V5 source commit hash. | `docs/corpus_freeze_manifest.md` |
 | **D10** | Enrichment status | Record `nvd_enriched` (derived: `configurations` non-empty) and `vulnStatus` (NVD) / `cveMetadata.state` (V5) per record at collection, as supplementary fields -- not used to gate inclusion. | `docs/cna_vs_nvd_scoring_split.md` |
 
-## Post-lock corrections (Week 5)
+## Post-lock corrections (Weeks 5 and 6)
 
-The rule itself was frozen at PR2. What follows are bug fixes in how the
-code implemented it, found by peer review on Video 2.
+The rule itself was frozen at PR2. What follows are fixes to how the code
+implemented it: C1 and C2 found by peer review on Video 2, C3 by the
+positive-control set, C4 by the source characterization reviewers asked for.
 
 | # | Correction | What changed | Landed in |
 |---|---|---|---|
 | **C1** | V5-path inclusion rule was looser than the NVD path | v1 admitted a record on a curated-vendor match alone, or on a category keyword alone. v2 needs a firmware-suffixed product, or a curated vendor and a category keyword together, which is what Include B already required on the NVD side. Microsoft, IBM, Dell, Google, and Apple went on the manual exclusion list after every sampled post-fix match from them turned out to be enterprise software or mobile OS records. The 2024 to 2026 V5-only share dropped from the 68% reported in PR2 to 3.1% (281 of 8,969). Raised by Monika Schrenk (Sep 23), with Travis Carlisle, JP Valentine, Albert Dinh, and Mizanur Rahman independently flagging the overlap. | `src/corpus_filter_v5.py`, `src/build_curated_vendor_list.py`, `docs/v5_vs_nvd_exclusion_count.md` |
 | **C2** | `score_fix_availability_v5` could never return 0 | Score 1 fired whenever a record had any reference at all. It now needs a `vendor-advisory` tag or fix language, matching the NVD scorer. No published number used this function, so nothing reported had to be restated. Raised by Monika Schrenk. | `src/identifiability_scorer.py` |
+| **C3** | v2 V5 rule dropped real routers | The positive-control set showed v2 missing Tenda A15 (CVE-2024-0531) because the description never says "router". v3 also admits a curated vendor with a model-number product name (A15, DIR-825, TL-WR841N), the V5 analog of Include B. On 2024 to 2026 the V5 path went from 492 to 2,808 records; 20 sampled model-only matches were all routers, extenders, or appliances (one borderline, CVE-2024-8105). | `src/corpus_filter_v5.py`, `docs/positive_control_set.md` |
+| **C4** | NVD path admitted denylisted vendors | The curated list's vendor exclusions only gated Include B; Include A (any part:h) and Include C (firmware suffix) admitted any vendor. The first frozen corpus (33,684) had about 10,000 records from Qualcomm, Cisco, MediaTek, Intel, Siemens, and similar vendors, and a hand check of 30 NVD-only records found 15 out of scope. One vendor scope denylist (28 vendors, adding AMD, Lenovo, NVIDIA, NetApp, HPE, Rockwell Automation, and Phoenix Contact) now applies to both paths: a record is excluded when every vendor that triggered it is on the list. It removed 11,665 NVD records; frozen corpus 21,990. Four NVD membership controls added. A post-fix sample still finds about a third of NVD-only records out of scope (long-tail phones, industrial, medical); decided 2026-09-28 to lock with that rate stated and add a description-based screen to the Week 8 results. | `src/scope_denylist.py`, `src/corpus_filter.py`, `src/corpus_filter_v5.py`, `src/freeze_manifest.py`, `docs/characterization_first_draw_pre_c4.md`, `docs/characterization_hand_check.md` |
 
 ## PR1 open questions closed by this pass
 

@@ -31,6 +31,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from scope_denylist import VENDOR_SCOPE_DENYLIST, scope_denied
+
 load_dotenv()
 REPO_ROOT = Path(__file__).resolve().parent.parent
 FREEZE = REPO_ROOT / "data" / "freeze"
@@ -58,8 +60,14 @@ def era(published: str | None) -> str:
     return "triage"
 
 
+# Same vendor under two names across CPE and CNA data. Found by the per-source
+# ranking check; a full alias map is part of the Week 8 results script.
+VENDOR_ALIASES = {"tendacn": "tenda", "draytekcorporation": "draytek"}
+
+
 def norm(v: str) -> str:
-    return re.sub(r"[^a-z0-9]", "", v.lower())
+    k = re.sub(r"[^a-z0-9]", "", v.lower())
+    return VENDOR_ALIASES.get(k, k)
 
 
 def v5_description(cve_id: str) -> str:
@@ -84,8 +92,16 @@ def ranking(records: dict, ids: set) -> Counter:
 
 
 def main() -> None:
-    nvd = load(FREEZE / "nvd_included.jsonl")
-    v5 = load(FREEZE / "v5_included.jsonl")
+    # The vendor scope denylist (C4, src/scope_denylist.py) postdates the NVD
+    # crawl. Filtering here gives the same set a re-crawl would, because an
+    # NVD record's "vendors" field is exactly the vendors that triggered its
+    # inclusion. The V5 pass was re-run under C4, so the filter is a no-op there.
+    nvd_raw = load(FREEZE / "nvd_included.jsonl")
+    v5_raw = load(FREEZE / "v5_included.jsonl")
+    nvd = {k: r for k, r in nvd_raw.items() if not scope_denied(r["vendors"])}
+    v5 = {k: r for k, r in v5_raw.items() if not scope_denied(r["vendors"])}
+    denied = {"vendors": len(VENDOR_SCOPE_DENYLIST), "nvd_dropped": len(nvd_raw) - len(nvd),
+              "v5_dropped": len(v5_raw) - len(v5)}
     v5_meta = json.loads((FREEZE / "v5_pass_meta.json").read_text())
     nvd_meta = json.loads((FREEZE / "nvd_pass_meta.json").read_text())
 
@@ -106,7 +122,8 @@ def main() -> None:
     manifest = {
         "frozen_utc": nvd_meta["run_started_utc"],
         "v5_commit": v5_meta["v5_commit"],
-        "rule": "corpus_filter.classify (NVD) OR corpus_filter_v5.classify v3 (V5)",
+        "rule": "corpus_filter.classify (NVD) OR corpus_filter_v5.classify v3 (V5), both with the C4 vendor scope denylist",
+        "scope_denylist": denied,
         "counts": {"union": len(union), "nvd_path": len(nvd_ids), "v5_path": len(v5_ids),
                    "both": len(both), "v5_only": len(v5_only), "nvd_only": len(nvd_only),
                    "pre_2011": pre2011, **{f"era_{k}": v for k, v in era_counts.items()}},
@@ -121,6 +138,8 @@ def main() -> None:
          f"Frozen corpus: **{len(union):,} CVEs**. NVD path {len(nvd_ids):,} of {nvd_meta['scanned']:,} scanned; "
          f"V5 path {len(v5_ids):,} of {v5_meta['scanned']:,} scanned. CVE List V5 commit `{v5_meta['v5_commit']}`. "
          f"SHA-256 of the sorted ID list: `{digest}`.\n",
+         f"Vendor scope denylist (C4, {denied['vendors']} vendors, applied to both paths) removed "
+         f"{denied['nvd_dropped']:,} records from the NVD pass output and {denied['v5_dropped']:,} from the V5 pass output.\n",
          "| Path | Records | Share of union |", "|---|---:|---:|",
          f"| Both | {len(both):,} | {pct(len(both), len(union))} |",
          f"| NVD only | {len(nvd_only):,} | {pct(len(nvd_only), len(union))} |",

@@ -1,8 +1,8 @@
 # Positive-Control Set (Evaluation 1)
 
-Built 2026-09-28T03:36:37+00:00. 40 controls: 19 run against the current code now, 21 HTTP controls waiting on the Week 7 retrievability checker.
+Built 2026-09-28T17:59:35+00:00. 46 controls: 25 run against the current code now, 21 HTTP controls waiting on the Week 7 retrievability checker.
 
-**Current code: 19 of 19 membership and scoring controls pass.**
+**Current code: 25 of 25 membership and scoring controls pass.**
 
 ## Membership and scoring controls
 
@@ -17,6 +17,12 @@ Built 2026-09-28T03:36:37+00:00. 40 controls: 19 run against the current code no
 | membership | CVE-2024-22457 |  | False | False | yes | Dell Secure Connect Gateway, enterprise software |
 | membership | CVE-2024-44100 |  | False | False | yes | Google Pixel modem component, mobile handset |
 | membership | CVE-2024-27795 |  | False | False | yes | Apple macOS camera extension |
+| membership_nvd | CVE-2022-46641 |  | True | True | yes | D-Link DIR-846 router |
+| membership_nvd | CVE-2023-37144 |  | True | True | yes | Tenda AC10 router |
+| membership_nvd | CVE-2023-21633 |  | False | False | yes | Qualcomm modem interface layer, mobile chipset (C4) |
+| membership_nvd | CVE-2021-0146 |  | False | False | yes | Intel processors, general-purpose computing (C4) |
+| membership_nvd | CVE-2019-10931 |  | False | False | yes | Siemens SIPROTEC 5, industrial control (C4) |
+| membership_nvd | CVE-2012-5037 |  | False | False | yes | Cisco Catalyst 6500/7600, enterprise core switching (C4) |
 | scoring_nvd | CVE-1999-0453 | identifiability | 0 | 0 | yes | rubric worked example: wildcard-only CPE |
 | scoring_nvd | CVE-2012-0695 | identifiability | 1 | 1 | yes | rubric worked example: upper bound only (replaced CVE-2009-5037, which also lists exact versions) |
 | scoring_nvd | CVE-2009-5037 | identifiability | 2 | 2 | yes | range plus dozens of exact versions; exact version scores 2 per rubric |
@@ -36,7 +42,7 @@ Observed values are what each URL returned when this set was built. The checker 
 |---|---|---|---|
 | https://www.cisa.gov/known-exploited-vulnerabilities-catalog | live_200 | 200, 284790 bytes | stable government page |
 | https://nvd.nist.gov/developers/vulnerabilities | live_200 | 200, 2092 bytes | stable government page |
-| https://github.com/CVEProject/cvelistV5 | live_200 | 200, 292881 bytes | stable repository page |
+| https://github.com/CVEProject/cvelistV5 | live_200 | 200, 292875 bytes | stable repository page |
 | https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/costin | live_200 | 200, 55212 bytes | stable conference page |
 | https://httpbin.org/status/200 | live_200 | 200, 0 bytes | test endpoint |
 | https://httpbin.org/status/404 | hard_404 | 404, 0 bytes | test endpoint |

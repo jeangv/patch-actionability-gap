@@ -2,9 +2,9 @@
 
 Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-corpus discovery pass 2026-09-04). Gates **Include B** only -- see module docstring in `src/build_curated_vendor_list.py` for why a vendor excluded here does not lose CVEs already caught by Include A (`h_any`) or Include C (`o_firmware`).
 
-**Result:** 532 included / 21 excluded of 553 candidate vendors.
+**Result:** 527 included / 26 excluded of 553 candidate vendors.
 
-**Rule:** exclude if (a) the vendor is on the manual override list -- 16 vendors identifiable by name as predominantly silicon/chipset, enterprise/carrier networking, or ICS, where example products are bare part/model numbers no text pattern can categorize (see rationale in `src/build_curated_vendor_list.py`) -- or (b) every one of the vendor's top-5 example products (from the discovery pass) matches a soft-exclusion category pattern (`src/soft_exclusions.py`: enterprise datacenter/server, ICS, medical, automotive, mobile handset, general-purpose computer). Include otherwise.
+**Rule:** exclude if (a) the vendor is on the manual override list -- 28 vendors identifiable by name as predominantly silicon/chipset, enterprise/carrier networking, ICS, or general-purpose computing and software, where example products are bare part/model numbers no text pattern can categorize (see rationale in `src/build_curated_vendor_list.py`) -- or (b) every one of the vendor's top-5 example products (from the discovery pass) matches a soft-exclusion category pattern (`src/soft_exclusions.py`: enterprise datacenter/server, ICS, medical, automotive, mobile handset, general-purpose computer). Include otherwise.
 
 **Machine-checkable:** re-running `python src/build_curated_vendor_list.py` reproduces this table and `data/curated_vendor_list.json` byte-for-byte from `docs/vendor_candidates_v1.md` -- no manual edits are made to either output file.
 
@@ -22,17 +22,22 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 25 | symantec | 24 | manual override: enterprise gateway security appliances |
 | 27 | juniper | 23 | manual override: carrier/service-provider networking, not consumer/SMB |
 | 28 | moxa | 23 | manual override: industrial Ethernet / ICS networking |
+| 34 | lenovo | 16 | manual override: PC and server BIOS/BMC firmware dominates this vendor's CVE count |
 | 41 | intel | 12 | manual override: silicon/chipset vendor, not a device vendor |
 | 44 | abb | 12 | manual override: industrial control systems |
 | 50 | schneider-electric | 10 | manual override: industrial control systems |
 | 55 | realtek | 9 | manual override: silicon/chipset vendor, not a device vendor |
-| 58 | dell | 8 | manual override: general-purpose enterprise software (e.g. Secure Connect Gateway) dominates this vendor's CVE count |
+| 58 | dell | 8 | manual override: general-purpose enterprise software and PC/server firmware dominate this vendor's CVE count |
 | 61 | pepperl-fuchs | 8 | manual override: industrial control systems |
 | 66 | ibm | 7 | manual override: general-purpose enterprise software (e.g. Sterling File Gateway, Security Verify) dominates this vendor's CVE count |
 | 102 | broadcom | 5 | manual override: silicon/chipset vendor, not a device vendor |
+| 105 | phoenixcontact | 5 | manual override: industrial control systems (added Week 6 with C4: in the NVD top 20 after the first C4 pass) |
 | 119 | apple | 4 | manual override: mobile/desktop OS (iOS/iPadOS/macOS) components dominate this vendor's CVE count |
 | 127 | google | 4 | manual override: mobile OS (Android/Chrome) components dominate this vendor's CVE count |
+| 191 | nvidia | 3 | manual override: GPU drivers and compute modules dominate this vendor's CVE count |
+| 311 | hpe | 1 | manual override: enterprise servers, storage, and datacenter networking |
 | 326 | microsoft | 1 | manual override: general-purpose/enterprise software (e.g. Remote Desktop Gateway, Windows) dominates this vendor's CVE count |
+| 463 | netapp | 1 | manual override: enterprise storage appliances |
 
 ## Included vendors (curated list, gates Include B)
 
@@ -61,7 +66,6 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 31 | trendnet | 20 | 25 |
 | 32 | zte | 17 | 30 |
 | 33 | 3com | 16 | 11 |
-| 34 | lenovo | 16 | 99 |
 | 35 | vivotek | 16 | 400 |
 | 36 | dahuasecurity | 15 | 166 |
 | 37 | geutebrueck | 14 | 38 |
@@ -124,7 +128,6 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 101 | lg | 5 | 48 |
 | 103 | wificam | 5 | 2 |
 | 104 | twsz | 5 | 4 |
-| 105 | phoenixcontact | 5 | 44 |
 | 106 | orange | 5 | 4 |
 | 107 | kunbus | 5 | 2 |
 | 108 | ishekar | 5 | 2 |
@@ -208,7 +211,6 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 188 | sagemcom | 3 | 6 |
 | 189 | company | 3 | 2 |
 | 190 | emerson | 3 | 8 |
-| 191 | nvidia | 3 | 7 |
 | 192 | phicomm | 3 | 12 |
 | 193 | ruijienetworks | 3 | 4 |
 | 194 | ezviz | 3 | 26 |
@@ -328,7 +330,6 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 308 | bintec | 1 | 3 |
 | 309 | alliedtelesyn | 1 | 1 |
 | 310 | speedxess | 1 | 1 |
-| 311 | hpe | 1 | 2 |
 | 312 | proxim | 1 | 4 |
 | 313 | com21 | 1 | 1 |
 | 314 | surecom | 1 | 1 |
@@ -479,7 +480,6 @@ Pruned from `docs/vendor_candidates_v1.md` (553 data-driven candidates, full-cor
 | 460 | hej | 1 | 2 |
 | 461 | kingjim | 1 | 6 |
 | 462 | alecto | 1 | 2 |
-| 463 | netapp | 1 | 16 |
 | 464 | claro | 1 | 2 |
 | 465 | i3international | 1 | 6 |
 | 466 | swiftsensors | 1 | 2 |

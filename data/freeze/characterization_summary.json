@@ -1,0 +1,154 @@
+{
+ "method": "30 random V5-only and 30 random NVD-only records (seed 20260927), hand-checked with AI assistance: an AI model made the first in-scope call, the author reviewed every call",
+ "ai_assisted": true,
+ "v5_only_in_scope": 23,
+ "v5_only_borderline": 3,
+ "v5_only_out": 4,
+ "nvd_only_in_scope": 9,
+ "nvd_only_borderline": 10,
+ "nvd_only_out": 11,
+ "first_draw": {
+  "note": "corpus as first frozen, before C4; docs/characterization_first_draw_pre_c4.md",
+  "v5_in": 22,
+  "v5_border": 2,
+  "v5_out": 6,
+  "nvd_in": 9,
+  "nvd_border": 6,
+  "nvd_out": 15
+ },
+ "second_post_fix_draw": {
+  "note": "NVD-only, seed 20260928, drawn after the first C4 pass",
+  "nvd_in": 13,
+  "nvd_border": 9,
+  "nvd_out": 8
+ },
+ "summary": "The V5-only records are almost all routers, IP cameras, and access points from device vendors, and 16 of the 30 were published in the 2026 triage era, when NVD enriches few records like them. What is still out of scope on the NVD side is a long tail of phones and industrial and medical equipment that a vendor list can't reach, so the corpus locks with that rate stated and the Week 8 results add a stricter description-based screen as a side-by-side check.",
+ "v5_note": "Mostly routers, IP cameras, and access points from vendors like Tenda, TOTOLINK, and Edimax; 16 of 30 are from the 2026 triage era.",
+ "nvd_note": "What remains out of scope is a long tail of phones and industrial and medical gear that no vendor rule reaches.",
+ "rank_flagged": 8,
+ "rank_summary": "The top of both rankings agrees: Tenda, D-Link, Netgear, TOTOLINK, and Huawei are the top five on each source. HP, Aruba, Zyxel, Insteon, and Reolink rank high on the NVD side and barely appear on the V5 side, while Synology, Netentsec, and Hathway rank much higher on the V5 side. RQ3 reports both rankings and flags these vendors. Two vendors split across two spellings (Tenda and Tendacn, DrayTek and DrayTek Corporation) are now merged.",
+ "rank_note": "The top five vendors are the same on both sources; eight rank high on one source only, and RQ3 flags them.",
+ "rank_rows": [
+  [
+   "tenda",
+   "1 (1,989)",
+   "1 (782)"
+  ],
+  [
+   "dlink",
+   "2 (1,694)",
+   "2 (701)"
+  ],
+  [
+   "netgear",
+   "3 (1,289)",
+   "4 (171)"
+  ],
+  [
+   "totolink",
+   "4 (1,107)",
+   "3 (476)"
+  ],
+  [
+   "huawei",
+   "5 (836)",
+   "5 (95)"
+  ],
+  [
+   "hp",
+   "6 (765)",
+   "unranked (1)"
+  ],
+  [
+   "linksys",
+   "10 (221)",
+   "6 (90)"
+  ],
+  [
+   "trendnet",
+   "12 (190)",
+   "7 (89)"
+  ],
+  [
+   "tplink",
+   "7 (533)",
+   "12 (57)"
+  ],
+  [
+   "zyxel",
+   "8 (291)",
+   "unranked (8)"
+  ],
+  [
+   "wavlink",
+   "11 (202)",
+   "8 (89)"
+  ],
+  [
+   "asus",
+   "9 (232)",
+   "11 (63)"
+  ],
+  [
+   "edimax",
+   "37 (66)",
+   "9 (86)"
+  ],
+  [
+   "milesight",
+   "30 (78)",
+   "10 (77)"
+  ],
+  [
+   "synology",
+   "71 (41)",
+   "13 (48)"
+  ],
+  [
+   "h3c",
+   "13 (173)",
+   "27 (19)"
+  ],
+  [
+   "draytek",
+   "17 (127)",
+   "14 (44)"
+  ],
+  [
+   "arubanetworks",
+   "14 (146)",
+   "unranked (0)"
+  ],
+  [
+   "belkin",
+   "27 (84)",
+   "15 (41)"
+  ],
+  [
+   "zte",
+   "15 (144)",
+   "21 (24)"
+  ],
+  [
+   "netentsec",
+   "162 (17)",
+   "18 (29)"
+  ],
+  [
+   "insteon",
+   "18 (113)",
+   "unranked (0)"
+  ],
+  [
+   "hathway",
+   "unranked (1)",
+   "19 (25)"
+  ],
+  [
+   "reolink",
+   "20 (95)",
+   "unranked (9)"
+  ]
+ ],
+ "appendix_text": "I drew 30 random records unique to each source (seed 20260927) and checked each by hand with AI assistance: an AI model made the first in-scope call from the CVE List V5 description and vendor, and I reviewed every call. Borderline covers embedded devices the scope statement doesn't name, such as SIP phones, printers, industrial wireless modules, and enterprise firewalls sold to small businesses. The first draw, on the corpus as first frozen, found 22 of 30 V5-only records in scope but only 9 of 30 NVD-only records, with 15 out of scope. That led to correction C4. After it, a new draw found 23 in scope, 3 borderline, and 4 out on the V5 side, and 9 in scope, 10 borderline, and 11 out on the NVD side. A second post-fix draw of NVD-only records (seed 20260928) found 13, 9, and 8. Across the two post-fix NVD-only draws, 19 of 60 records are out of scope. The corpus locks with that rate stated, and the Week 8 results will be reported on the full corpus and on a subset screened by description, side by side. The table compares vendor rankings on each source; a vendor needs 10 CVEs on a source to be ranked there, and the table lists vendors in either top 15 plus every flagged vendor."
+}

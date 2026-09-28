@@ -115,36 +115,8 @@ ROW_RE = re.compile(r"^\|\s*\d+\s*\|")
 # out-of-scope, where example products are bare part/model numbers no regex
 # can categorize. See module docstring for the full rationale per group.
 # Excludes from Include B only -- see module docstring.
-MANUAL_VENDOR_DENYLIST = {
-    # silicon/chipset
-    "qualcomm": "silicon/chipset vendor, not a device vendor",
-    "mediatek": "silicon/chipset vendor, not a device vendor",
-    "unisoc": "silicon/chipset vendor, not a device vendor",
-    "realtek": "silicon/chipset vendor, not a device vendor",
-    "intel": "silicon/chipset vendor, not a device vendor",
-    "broadcom": "silicon/chipset vendor, not a device vendor",
-    "samsung": "silicon/chipset vendor (Exynos) dominates this vendor's listed products",
-    # enterprise / carrier networking (Appendix B soft exclusion)
-    "cisco": "carrier/campus-core networking (ASR/Nexus/Catalyst) dominates this vendor's CVE count",
-    "juniper": "carrier/service-provider networking, not consumer/SMB",
-    "citrix": "enterprise application delivery controller / gateway appliances",
-    "symantec": "enterprise gateway security appliances",
-    # ICS (Appendix B soft exclusion)
-    "siemens": "industrial control systems",
-    "schneider-electric": "industrial control systems",
-    "abb": "industrial control systems",
-    "moxa": "industrial Ethernet / ICS networking",
-    "pepperl-fuchs": "industrial control systems",
-    # general-purpose software/cloud/mobile-OS (V5-path evidence, Sep 2026 --
-    # see module docstring): 100% of sampled post-fix V5 vendor-match hits
-    # for these vendors were enterprise-software or mobile-OS records, not
-    # embedded/IoT hardware.
-    "microsoft": "general-purpose/enterprise software (e.g. Remote Desktop Gateway, Windows) dominates this vendor's CVE count",
-    "ibm": "general-purpose enterprise software (e.g. Sterling File Gateway, Security Verify) dominates this vendor's CVE count",
-    "dell": "general-purpose enterprise software (e.g. Secure Connect Gateway) dominates this vendor's CVE count",
-    "google": "mobile OS (Android/Chrome) components dominate this vendor's CVE count",
-    "apple": "mobile/desktop OS (iOS/iPadOS/macOS) components dominate this vendor's CVE count",
-}
+# The list lives in scope_denylist.py, which both corpus filters also use.
+from scope_denylist import VENDOR_SCOPE_DENYLIST as MANUAL_VENDOR_DENYLIST  # noqa: E402
 
 
 def parse_rows(md_path: Path) -> list[dict]:
@@ -217,8 +189,8 @@ def main() -> None:
     )
     lines.append(
         "**Rule:** exclude if (a) the vendor is on the manual override list -- "
-        "16 vendors identifiable by name as predominantly silicon/chipset, "
-        "enterprise/carrier networking, or ICS, where example products are "
+        f"{len(MANUAL_VENDOR_DENYLIST)} vendors identifiable by name as predominantly silicon/chipset, "
+        "enterprise/carrier networking, ICS, or general-purpose computing and software, where example products are "
         "bare part/model numbers no text pattern can categorize (see rationale "
         "in `src/build_curated_vendor_list.py`) -- or (b) every one of the "
         "vendor's top-5 example products (from the discovery pass) matches a "
