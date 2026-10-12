@@ -25,3 +25,6 @@ data/*
 !data/freeze/
 data/freeze/*
 !data/freeze/characterization_summary.json
+!data/results/
+data/results/*
+!data/results/results.json
