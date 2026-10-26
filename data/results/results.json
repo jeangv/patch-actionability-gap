@@ -212,59 +212,104 @@
   "all": {
    "n": 21990,
    "retrievable_fix_rate": 0.272,
-   "any_live_reference_rate": 0.272
+   "any_live_reference_rate": 0.272,
+   "fix_link_rate": 0.372,
+   "live_given_link_rate": 0.73
   },
   "screened": {
    "n": 21494,
    "retrievable_fix_rate": 0.269,
-   "any_live_reference_rate": 0.269
+   "any_live_reference_rate": 0.269,
+   "fix_link_rate": 0.371,
+   "live_given_link_rate": 0.726
   }
  },
  "headline_by_path_era": {
   "both|pre-2024": {
    "n": 583,
    "retrievable_fix_rate": 0.324,
-   "any_live_reference_rate": 0.324
+   "any_live_reference_rate": 0.324,
+   "fix_link_rate": 0.384,
+   "live_given_link_rate": 0.844
   },
   "both|backlog": {
    "n": 1921,
    "retrievable_fix_rate": 0.151,
-   "any_live_reference_rate": 0.151
+   "any_live_reference_rate": 0.151,
+   "fix_link_rate": 0.171,
+   "live_given_link_rate": 0.881
   },
   "both|triage": {
    "n": 376,
    "retrievable_fix_rate": 0.146,
-   "any_live_reference_rate": 0.146
+   "any_live_reference_rate": 0.146,
+   "fix_link_rate": 0.194,
+   "live_given_link_rate": 0.753
   },
   "nvd_only|pre-2024": {
    "n": 14016,
    "retrievable_fix_rate": 0.317,
-   "any_live_reference_rate": 0.317
+   "any_live_reference_rate": 0.317,
+   "fix_link_rate": 0.444,
+   "live_given_link_rate": 0.713
   },
   "nvd_only|backlog": {
    "n": 3582,
    "retrievable_fix_rate": 0.171,
-   "any_live_reference_rate": 0.171
+   "any_live_reference_rate": 0.171,
+   "fix_link_rate": 0.223,
+   "live_given_link_rate": 0.768
   },
   "nvd_only|triage": {
    "n": 584,
    "retrievable_fix_rate": 0.406,
-   "any_live_reference_rate": 0.406
+   "any_live_reference_rate": 0.406,
+   "fix_link_rate": 0.616,
+   "live_given_link_rate": 0.658
   },
   "v5_only|pre-2024": {
    "n": 68,
    "retrievable_fix_rate": 0.132,
-   "any_live_reference_rate": 0.132
+   "any_live_reference_rate": 0.132,
+   "fix_link_rate": 0.147,
+   "live_given_link_rate": 0.9
   },
   "v5_only|backlog": {
    "n": 279,
    "retrievable_fix_rate": 0.183,
-   "any_live_reference_rate": 0.183
+   "any_live_reference_rate": 0.183,
+   "fix_link_rate": 0.211,
+   "live_given_link_rate": 0.864
   },
   "v5_only|triage": {
    "n": 581,
    "retrievable_fix_rate": 0.16,
-   "any_live_reference_rate": 0.16
+   "any_live_reference_rate": 0.16,
+   "fix_link_rate": 0.191,
+   "live_given_link_rate": 0.838
+  }
+ },
+ "headline_by_path": {
+  "both": {
+   "n": 2880,
+   "retrievable_fix_rate": 0.185,
+   "any_live_reference_rate": 0.185,
+   "fix_link_rate": 0.217,
+   "live_given_link_rate": 0.853
+  },
+  "nvd_only": {
+   "n": 18182,
+   "retrievable_fix_rate": 0.291,
+   "any_live_reference_rate": 0.291,
+   "fix_link_rate": 0.406,
+   "live_given_link_rate": 0.716
+  },
+  "v5_only": {
+   "n": 928,
+   "retrievable_fix_rate": 0.165,
+   "any_live_reference_rate": 0.165,
+   "fix_link_rate": 0.194,
+   "live_given_link_rate": 0.85
   }
  },
  "screen": {
@@ -277,6 +322,8 @@
    "n": 2067,
    "retrievable_fix_rate": 0.012,
    "any_live_reference_rate": 0.012,
+   "fix_link_rate": 0.017,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.96
   },
   {
@@ -284,6 +331,8 @@
    "n": 1753,
    "retrievable_fix_rate": 0.422,
    "any_live_reference_rate": 0.422,
+   "fix_link_rate": 0.44,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.7
   },
   {
@@ -291,6 +340,8 @@
    "n": 1302,
    "retrievable_fix_rate": 0.826,
    "any_live_reference_rate": 0.826,
+   "fix_link_rate": 0.839,
+   "own_cna_share": 0.038,
    "nvd_identifiability_mean": 1.5
   },
   {
@@ -298,6 +349,8 @@
    "n": 1261,
    "retrievable_fix_rate": 0.011,
    "any_live_reference_rate": 0.011,
+   "fix_link_rate": 0.029,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.97
   },
   {
@@ -305,6 +358,8 @@
    "n": 856,
    "retrievable_fix_rate": 0.813,
    "any_live_reference_rate": 0.813,
+   "fix_link_rate": 0.931,
+   "own_cna_share": 0.815,
    "nvd_identifiability_mean": 1.6
   },
   {
@@ -312,6 +367,8 @@
    "n": 766,
    "retrievable_fix_rate": 0.428,
    "any_live_reference_rate": 0.428,
+   "fix_link_rate": 0.873,
+   "own_cna_share": 0.38,
    "nvd_identifiability_mean": 1.7
   },
   {
@@ -319,6 +376,8 @@
    "n": 539,
    "retrievable_fix_rate": 0.332,
    "any_live_reference_rate": 0.332,
+   "fix_link_rate": 0.34,
+   "own_cna_share": 0.245,
    "nvd_identifiability_mean": 1.74
   },
   {
@@ -326,6 +385,8 @@
    "n": 291,
    "retrievable_fix_rate": 0.54,
    "any_live_reference_rate": 0.54,
+   "fix_link_rate": 0.708,
+   "own_cna_share": 0.536,
    "nvd_identifiability_mean": 1.47
   },
   {
@@ -333,6 +394,8 @@
    "n": 254,
    "retrievable_fix_rate": 0.291,
    "any_live_reference_rate": 0.291,
+   "fix_link_rate": 0.327,
+   "own_cna_share": 0.071,
    "nvd_identifiability_mean": 1.38
   },
   {
@@ -340,6 +403,8 @@
    "n": 238,
    "retrievable_fix_rate": 0.097,
    "any_live_reference_rate": 0.097,
+   "fix_link_rate": 0.109,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.82
   },
   {
@@ -347,6 +412,8 @@
    "n": 234,
    "retrievable_fix_rate": 0.132,
    "any_live_reference_rate": 0.132,
+   "fix_link_rate": 0.171,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.78
   },
   {
@@ -354,6 +421,8 @@
    "n": 218,
    "retrievable_fix_rate": 0.115,
    "any_live_reference_rate": 0.115,
+   "fix_link_rate": 0.151,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.65
   },
   {
@@ -361,6 +430,8 @@
    "n": 189,
    "retrievable_fix_rate": 0.011,
    "any_live_reference_rate": 0.011,
+   "fix_link_rate": 0.016,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.76
   },
   {
@@ -368,6 +439,8 @@
    "n": 168,
    "retrievable_fix_rate": 0.262,
    "any_live_reference_rate": 0.262,
+   "fix_link_rate": 0.274,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.8
   },
   {
@@ -375,6 +448,8 @@
    "n": 152,
    "retrievable_fix_rate": 0.684,
    "any_live_reference_rate": 0.684,
+   "fix_link_rate": 0.743,
+   "own_cna_share": 0.809,
    "nvd_identifiability_mean": 1.47
   },
   {
@@ -382,6 +457,8 @@
    "n": 146,
    "retrievable_fix_rate": 0.062,
    "any_live_reference_rate": 0.062,
+   "fix_link_rate": 0.966,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.95
   },
   {
@@ -389,6 +466,8 @@
    "n": 141,
    "retrievable_fix_rate": 0.028,
    "any_live_reference_rate": 0.028,
+   "fix_link_rate": 0.028,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.64
   },
   {
@@ -396,6 +475,8 @@
    "n": 138,
    "retrievable_fix_rate": 0.08,
    "any_live_reference_rate": 0.08,
+   "fix_link_rate": 0.928,
+   "own_cna_share": 0.783,
    "nvd_identifiability_mean": 1.42
   },
   {
@@ -403,6 +484,8 @@
    "n": 113,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.96
   },
   {
@@ -410,6 +493,8 @@
    "n": 106,
    "retrievable_fix_rate": 0.236,
    "any_live_reference_rate": 0.236,
+   "fix_link_rate": 0.264,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.6
   },
   {
@@ -417,6 +502,8 @@
    "n": 96,
    "retrievable_fix_rate": 0.021,
    "any_live_reference_rate": 0.021,
+   "fix_link_rate": 0.021,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.7
   },
   {
@@ -424,6 +511,8 @@
    "n": 95,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.93
   },
   {
@@ -431,6 +520,8 @@
    "n": 92,
    "retrievable_fix_rate": 0.12,
    "any_live_reference_rate": 0.12,
+   "fix_link_rate": 0.12,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.38
   },
   {
@@ -438,6 +529,8 @@
    "n": 91,
    "retrievable_fix_rate": 0.813,
    "any_live_reference_rate": 0.813,
+   "fix_link_rate": 0.879,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.1
   },
   {
@@ -445,27 +538,35 @@
    "n": 90,
    "retrievable_fix_rate": 0.767,
    "any_live_reference_rate": 0.767,
+   "fix_link_rate": 0.767,
+   "own_cna_share": 0.478,
    "nvd_identifiability_mean": 0.73
-  },
-  {
-   "vendor": "bosch",
-   "n": 88,
-   "retrievable_fix_rate": 0.943,
-   "any_live_reference_rate": 0.943,
-   "nvd_identifiability_mean": 1.58
   },
   {
    "vendor": "utt",
    "n": 88,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.9
+  },
+  {
+   "vendor": "bosch",
+   "n": 88,
+   "retrievable_fix_rate": 0.943,
+   "any_live_reference_rate": 0.943,
+   "fix_link_rate": 0.943,
+   "own_cna_share": 0.898,
+   "nvd_identifiability_mean": 1.58
   },
   {
    "vendor": "belkin",
    "n": 87,
    "retrievable_fix_rate": 0.092,
    "any_live_reference_rate": 0.092,
+   "fix_link_rate": 0.092,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.69
   },
   {
@@ -473,6 +574,8 @@
    "n": 84,
    "retrievable_fix_rate": 0.012,
    "any_live_reference_rate": 0.012,
+   "fix_link_rate": 0.012,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.87
   },
   {
@@ -480,6 +583,8 @@
    "n": 83,
    "retrievable_fix_rate": 0.108,
    "any_live_reference_rate": 0.108,
+   "fix_link_rate": 0.193,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.35
   },
   {
@@ -487,6 +592,8 @@
    "n": 79,
    "retrievable_fix_rate": 0.658,
    "any_live_reference_rate": 0.658,
+   "fix_link_rate": 0.671,
+   "own_cna_share": 0.785,
    "nvd_identifiability_mean": 1.66
   },
   {
@@ -494,6 +601,8 @@
    "n": 79,
    "retrievable_fix_rate": 0.025,
    "any_live_reference_rate": 0.025,
+   "fix_link_rate": 0.684,
+   "own_cna_share": 0.304,
    "nvd_identifiability_mean": 0.77
   },
   {
@@ -501,6 +610,8 @@
    "n": 77,
    "retrievable_fix_rate": 0.039,
    "any_live_reference_rate": 0.039,
+   "fix_link_rate": 0.468,
+   "own_cna_share": 0.974,
    "nvd_identifiability_mean": 0.97
   },
   {
@@ -508,6 +619,8 @@
    "n": 76,
    "retrievable_fix_rate": 0.224,
    "any_live_reference_rate": 0.224,
+   "fix_link_rate": 0.803,
+   "own_cna_share": 0.553,
    "nvd_identifiability_mean": 1.94
   },
   {
@@ -515,6 +628,8 @@
    "n": 74,
    "retrievable_fix_rate": 0.716,
    "any_live_reference_rate": 0.716,
+   "fix_link_rate": 0.986,
+   "own_cna_share": 0.973,
    "nvd_identifiability_mean": 0.8
   },
   {
@@ -522,6 +637,8 @@
    "n": 70,
    "retrievable_fix_rate": 0.329,
    "any_live_reference_rate": 0.329,
+   "fix_link_rate": 0.943,
+   "own_cna_share": 0.6,
    "nvd_identifiability_mean": 1.78
   },
   {
@@ -529,6 +646,8 @@
    "n": 69,
    "retrievable_fix_rate": 0.377,
    "any_live_reference_rate": 0.377,
+   "fix_link_rate": 0.812,
+   "own_cna_share": 0.391,
    "nvd_identifiability_mean": 1.59
   },
   {
@@ -536,6 +655,8 @@
    "n": 67,
    "retrievable_fix_rate": 0.373,
    "any_live_reference_rate": 0.373,
+   "fix_link_rate": 0.537,
+   "own_cna_share": 0.403,
    "nvd_identifiability_mean": 1.01
   },
   {
@@ -543,27 +664,35 @@
    "n": 66,
    "retrievable_fix_rate": 0.636,
    "any_live_reference_rate": 0.636,
+   "fix_link_rate": 0.818,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.12
-  },
-  {
-   "vendor": "foscam",
-   "n": 64,
-   "retrievable_fix_rate": 0.062,
-   "any_live_reference_rate": 0.062,
-   "nvd_identifiability_mean": 1.83
   },
   {
    "vendor": "inhandnetworks",
    "n": 64,
    "retrievable_fix_rate": 0.078,
    "any_live_reference_rate": 0.078,
+   "fix_link_rate": 0.531,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.44
+  },
+  {
+   "vendor": "foscam",
+   "n": 64,
+   "retrievable_fix_rate": 0.062,
+   "any_live_reference_rate": 0.062,
+   "fix_link_rate": 0.078,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.83
   },
   {
    "vendor": "siretta",
    "n": 64,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
@@ -571,6 +700,8 @@
    "n": 63,
    "retrievable_fix_rate": 0.048,
    "any_live_reference_rate": 0.048,
+   "fix_link_rate": 0.159,
+   "own_cna_share": 0.016,
    "nvd_identifiability_mean": 1.74
   },
   {
@@ -578,6 +709,8 @@
    "n": 62,
    "retrievable_fix_rate": 0.048,
    "any_live_reference_rate": 0.048,
+   "fix_link_rate": 0.694,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.35
   },
   {
@@ -585,34 +718,44 @@
    "n": 61,
    "retrievable_fix_rate": 0.016,
    "any_live_reference_rate": 0.016,
+   "fix_link_rate": 0.016,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.2
-  },
-  {
-   "vendor": "elecom",
-   "n": 61,
-   "retrievable_fix_rate": 0.016,
-   "any_live_reference_rate": 0.016,
-   "nvd_identifiability_mean": 0.69
-  },
-  {
-   "vendor": "amazon",
-   "n": 61,
-   "retrievable_fix_rate": 0.443,
-   "any_live_reference_rate": 0.443,
-   "nvd_identifiability_mean": 1.53
   },
   {
    "vendor": "honeywell",
    "n": 61,
    "retrievable_fix_rate": 0.131,
    "any_live_reference_rate": 0.131,
+   "fix_link_rate": 0.148,
+   "own_cna_share": 0.393,
    "nvd_identifiability_mean": 1.06
+  },
+  {
+   "vendor": "amazon",
+   "n": 61,
+   "retrievable_fix_rate": 0.443,
+   "any_live_reference_rate": 0.443,
+   "fix_link_rate": 0.443,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.53
+  },
+  {
+   "vendor": "elecom",
+   "n": 61,
+   "retrievable_fix_rate": 0.016,
+   "any_live_reference_rate": 0.016,
+   "fix_link_rate": 0.984,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.69
   },
   {
    "vendor": "checkpoint",
    "n": 60,
    "retrievable_fix_rate": 0.367,
    "any_live_reference_rate": 0.367,
+   "fix_link_rate": 0.583,
+   "own_cna_share": 0.183,
    "nvd_identifiability_mean": 1.91
   },
   {
@@ -620,6 +763,8 @@
    "n": 59,
    "retrievable_fix_rate": 0.186,
    "any_live_reference_rate": 0.186,
+   "fix_link_rate": 0.186,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.74
   },
   {
@@ -627,6 +772,8 @@
    "n": 57,
    "retrievable_fix_rate": 0.281,
    "any_live_reference_rate": 0.281,
+   "fix_link_rate": 0.526,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.45
   },
   {
@@ -634,83 +781,107 @@
    "n": 56,
    "retrievable_fix_rate": 0.071,
    "any_live_reference_rate": 0.071,
+   "fix_link_rate": 0.554,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.11
-  },
-  {
-   "vendor": "commscope",
-   "n": 55,
-   "retrievable_fix_rate": 0.182,
-   "any_live_reference_rate": 0.182,
-   "nvd_identifiability_mean": 1.78
   },
   {
    "vendor": "dahuasecurity",
    "n": 55,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.782,
+   "own_cna_share": 0.745,
    "nvd_identifiability_mean": 1.35
+  },
+  {
+   "vendor": "commscope",
+   "n": 55,
+   "retrievable_fix_rate": 0.182,
+   "any_live_reference_rate": 0.182,
+   "fix_link_rate": 0.2,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.78
   },
   {
    "vendor": "buffalo",
    "n": 54,
    "retrievable_fix_rate": 0.556,
    "any_live_reference_rate": 0.556,
+   "fix_link_rate": 0.704,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.31
-  },
-  {
-   "vendor": "sophos",
-   "n": 53,
-   "retrievable_fix_rate": 0.642,
-   "any_live_reference_rate": 0.642,
-   "nvd_identifiability_mean": 1.58
   },
   {
    "vendor": "grandstream",
    "n": 53,
    "retrievable_fix_rate": 0.226,
    "any_live_reference_rate": 0.226,
+   "fix_link_rate": 0.245,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.23
+  },
+  {
+   "vendor": "sophos",
+   "n": 53,
+   "retrievable_fix_rate": 0.642,
+   "any_live_reference_rate": 0.642,
+   "fix_link_rate": 0.887,
+   "own_cna_share": 0.302,
+   "nvd_identifiability_mean": 1.58
   },
   {
    "vendor": "netissystems",
    "n": 51,
    "retrievable_fix_rate": 0.02,
    "any_live_reference_rate": 0.02,
+   "fix_link_rate": 0.039,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.61
-  },
-  {
-   "vendor": "lexmark",
-   "n": 49,
-   "retrievable_fix_rate": 0.653,
-   "any_live_reference_rate": 0.653,
-   "nvd_identifiability_mean": 0.92
   },
   {
    "vendor": "axis",
    "n": 49,
    "retrievable_fix_rate": 0.449,
    "any_live_reference_rate": 0.449,
+   "fix_link_rate": 0.49,
+   "own_cna_share": 0.224,
    "nvd_identifiability_mean": 1.39
   },
   {
-   "vendor": "qnap",
-   "n": 48,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.48
+   "vendor": "lexmark",
+   "n": 49,
+   "retrievable_fix_rate": 0.653,
+   "any_live_reference_rate": 0.653,
+   "fix_link_rate": 0.878,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.92
   },
   {
    "vendor": "philips",
    "n": 48,
    "retrievable_fix_rate": 0.208,
    "any_live_reference_rate": 0.208,
+   "fix_link_rate": 0.208,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.98
+  },
+  {
+   "vendor": "qnap",
+   "n": 48,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.375,
+   "own_cna_share": 0.771,
+   "nvd_identifiability_mean": 1.48
   },
   {
    "vendor": "acer",
    "n": 48,
    "retrievable_fix_rate": 0.104,
    "any_live_reference_rate": 0.104,
+   "fix_link_rate": 0.812,
+   "own_cna_share": 0.688,
    "nvd_identifiability_mean": 1.06
   },
   {
@@ -718,6 +889,8 @@
    "n": 47,
    "retrievable_fix_rate": 0.043,
    "any_live_reference_rate": 0.043,
+   "fix_link_rate": 0.043,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.91
   },
   {
@@ -725,6 +898,8 @@
    "n": 45,
    "retrievable_fix_rate": 0.6,
    "any_live_reference_rate": 0.6,
+   "fix_link_rate": 0.822,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.98
   },
   {
@@ -732,62 +907,80 @@
    "n": 45,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "ge",
-   "n": 44,
-   "retrievable_fix_rate": 0.136,
-   "any_live_reference_rate": 0.136,
-   "nvd_identifiability_mean": 0.86
   },
   {
    "vendor": "oracle",
    "n": 44,
    "retrievable_fix_rate": 0.841,
    "any_live_reference_rate": 0.841,
+   "fix_link_rate": 0.909,
+   "own_cna_share": 0.705,
    "nvd_identifiability_mean": 1.75
   },
   {
-   "vendor": "intelbras",
-   "n": 43,
-   "retrievable_fix_rate": 0.07,
-   "any_live_reference_rate": 0.07,
-   "nvd_identifiability_mean": 1.76
+   "vendor": "ge",
+   "n": 44,
+   "retrievable_fix_rate": 0.136,
+   "any_live_reference_rate": 0.136,
+   "fix_link_rate": 0.341,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.86
   },
   {
    "vendor": "technicolor",
    "n": 43,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.74
   },
   {
-   "vendor": "lantronix",
-   "n": 42,
-   "retrievable_fix_rate": 0.048,
-   "any_live_reference_rate": 0.048,
-   "nvd_identifiability_mean": 1.71
-  },
-  {
-   "vendor": "planet",
-   "n": 42,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.95
+   "vendor": "intelbras",
+   "n": 43,
+   "retrievable_fix_rate": 0.07,
+   "any_live_reference_rate": 0.07,
+   "fix_link_rate": 0.07,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.76
   },
   {
    "vendor": "avaya",
    "n": 42,
    "retrievable_fix_rate": 0.714,
    "any_live_reference_rate": 0.714,
+   "fix_link_rate": 0.81,
+   "own_cna_share": 0.048,
    "nvd_identifiability_mean": 1.76
+  },
+  {
+   "vendor": "planet",
+   "n": 42,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.95
+  },
+  {
+   "vendor": "lantronix",
+   "n": 42,
+   "retrievable_fix_rate": 0.048,
+   "any_live_reference_rate": 0.048,
+   "fix_link_rate": 0.048,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.71
   },
   {
    "vendor": "sun",
    "n": 41,
    "retrievable_fix_rate": 0.585,
    "any_live_reference_rate": 0.585,
+   "fix_link_rate": 0.805,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.27
   },
   {
@@ -795,6 +988,8 @@
    "n": 40,
    "retrievable_fix_rate": 0.3,
    "any_live_reference_rate": 0.3,
+   "fix_link_rate": 0.3,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.18
   },
   {
@@ -802,6 +997,8 @@
    "n": 39,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.97
   },
   {
@@ -809,6 +1006,8 @@
    "n": 39,
    "retrievable_fix_rate": 0.051,
    "any_live_reference_rate": 0.051,
+   "fix_link_rate": 0.821,
+   "own_cna_share": 0.795,
    "nvd_identifiability_mean": 1.82
   },
   {
@@ -816,76 +1015,98 @@
    "n": 39,
    "retrievable_fix_rate": 1.0,
    "any_live_reference_rate": 1.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 1.0,
    "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "hikvision",
-   "n": 38,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.14
   },
   {
    "vendor": "fujitsu",
    "n": 38,
    "retrievable_fix_rate": 0.526,
    "any_live_reference_rate": 0.526,
+   "fix_link_rate": 0.711,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.49
+  },
+  {
+   "vendor": "hikvision",
+   "n": 38,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.447,
+   "own_cna_share": 0.579,
+   "nvd_identifiability_mean": 1.14
   },
   {
    "vendor": "ruckuswireless",
    "n": 38,
    "retrievable_fix_rate": 0.526,
    "any_live_reference_rate": 0.526,
+   "fix_link_rate": 0.895,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.73
-  },
-  {
-   "vendor": "microchip",
-   "n": 37,
-   "retrievable_fix_rate": 0.027,
-   "any_live_reference_rate": 0.027,
-   "nvd_identifiability_mean": 1.57
   },
   {
    "vendor": "arista",
    "n": 37,
    "retrievable_fix_rate": 0.027,
    "any_live_reference_rate": 0.027,
+   "fix_link_rate": 0.811,
+   "own_cna_share": 0.622,
    "nvd_identifiability_mean": 1.89
+  },
+  {
+   "vendor": "microchip",
+   "n": 37,
+   "retrievable_fix_rate": 0.027,
+   "any_live_reference_rate": 0.027,
+   "fix_link_rate": 0.568,
+   "own_cna_share": 0.432,
+   "nvd_identifiability_mean": 1.57
   },
   {
    "vendor": "iodata",
    "n": 36,
    "retrievable_fix_rate": 0.806,
    "any_live_reference_rate": 0.806,
+   "fix_link_rate": 0.861,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.19
-  },
-  {
-   "vendor": "crestron",
-   "n": 35,
-   "retrievable_fix_rate": 0.057,
-   "any_live_reference_rate": 0.057,
-   "nvd_identifiability_mean": 1.69
-  },
-  {
-   "vendor": "ricoh",
-   "n": 35,
-   "retrievable_fix_rate": 0.343,
-   "any_live_reference_rate": 0.343,
-   "nvd_identifiability_mean": 0.91
   },
   {
    "vendor": "samsung",
    "n": 35,
    "retrievable_fix_rate": 0.371,
    "any_live_reference_rate": 0.371,
+   "fix_link_rate": 0.486,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.09
+  },
+  {
+   "vendor": "ricoh",
+   "n": 35,
+   "retrievable_fix_rate": 0.343,
+   "any_live_reference_rate": 0.343,
+   "fix_link_rate": 0.6,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.91
+  },
+  {
+   "vendor": "crestron",
+   "n": 35,
+   "retrievable_fix_rate": 0.057,
+   "any_live_reference_rate": 0.057,
+   "fix_link_rate": 0.2,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.69
   },
   {
    "vendor": "lg",
    "n": 34,
    "retrievable_fix_rate": 0.059,
    "any_live_reference_rate": 0.059,
+   "fix_link_rate": 0.647,
+   "own_cna_share": 0.265,
    "nvd_identifiability_mean": 1.68
   },
   {
@@ -893,6 +1114,8 @@
    "n": 33,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.03,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
@@ -900,27 +1123,8 @@
    "n": 33,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "secomea",
-   "n": 32,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.09
-  },
-  {
-   "vendor": "eq3",
-   "n": 32,
-   "retrievable_fix_rate": 0.281,
-   "any_live_reference_rate": 0.281,
-   "nvd_identifiability_mean": 1.38
-  },
-  {
-   "vendor": "selinc",
-   "n": 32,
-   "retrievable_fix_rate": 0.906,
-   "any_live_reference_rate": 0.906,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
@@ -928,20 +1132,44 @@
    "n": 32,
    "retrievable_fix_rate": 0.75,
    "any_live_reference_rate": 0.75,
+   "fix_link_rate": 0.75,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.78
   },
   {
-   "vendor": "skyworthdigital",
-   "n": 31,
+   "vendor": "eq3",
+   "n": 32,
+   "retrievable_fix_rate": 0.281,
+   "any_live_reference_rate": 0.281,
+   "fix_link_rate": 0.281,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.38
+  },
+  {
+   "vendor": "secomea",
+   "n": 32,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.94
+   "fix_link_rate": 0.875,
+   "own_cna_share": 0.875,
+   "nvd_identifiability_mean": 1.09
+  },
+  {
+   "vendor": "selinc",
+   "n": 32,
+   "retrievable_fix_rate": 0.906,
+   "any_live_reference_rate": 0.906,
+   "fix_link_rate": 0.906,
+   "own_cna_share": 0.906,
+   "nvd_identifiability_mean": 2.0
   },
   {
    "vendor": "contec",
    "n": 31,
    "retrievable_fix_rate": 0.29,
    "any_live_reference_rate": 0.29,
+   "fix_link_rate": 0.613,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.29
   },
   {
@@ -949,6 +1177,8 @@
    "n": 31,
    "retrievable_fix_rate": 0.258,
    "any_live_reference_rate": 0.258,
+   "fix_link_rate": 0.387,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.1
   },
   {
@@ -956,13 +1186,26 @@
    "n": 31,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "skyworthdigital",
+   "n": 31,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.94
   },
   {
    "vendor": "arris",
    "n": 30,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.033,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.63
   },
   {
@@ -970,20 +1213,17 @@
    "n": 30,
    "retrievable_fix_rate": 0.6,
    "any_live_reference_rate": 0.6,
+   "fix_link_rate": 0.833,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.53
-  },
-  {
-   "vendor": "barco",
-   "n": 29,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.28
   },
   {
    "vendor": "jvckenwood",
    "n": 29,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
@@ -991,48 +1231,53 @@
    "n": 29,
    "retrievable_fix_rate": 0.483,
    "any_live_reference_rate": 0.483,
+   "fix_link_rate": 0.483,
+   "own_cna_share": 0.207,
    "nvd_identifiability_mean": 1.9
   },
   {
-   "vendor": "yokogawa",
-   "n": 28,
-   "retrievable_fix_rate": 0.75,
-   "any_live_reference_rate": 0.75,
-   "nvd_identifiability_mean": 1.89
+   "vendor": "barco",
+   "n": 29,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.586,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.28
   },
   {
    "vendor": "supermicro",
    "n": 28,
    "retrievable_fix_rate": 0.679,
    "any_live_reference_rate": 0.679,
+   "fix_link_rate": 0.714,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.37
   },
   {
-   "vendor": "cobham",
-   "n": 27,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.33
+   "vendor": "yokogawa",
+   "n": 28,
+   "retrievable_fix_rate": 0.75,
+   "any_live_reference_rate": 0.75,
+   "fix_link_rate": 0.857,
+   "own_cna_share": 0.036,
+   "nvd_identifiability_mean": 1.89
   },
   {
    "vendor": "polycom",
    "n": 27,
    "retrievable_fix_rate": 0.593,
    "any_live_reference_rate": 0.593,
+   "fix_link_rate": 0.63,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.48
-  },
-  {
-   "vendor": "dbbroadcast",
-   "n": 27,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.7
   },
   {
    "vendor": "3com",
    "n": 27,
    "retrievable_fix_rate": 0.63,
    "any_live_reference_rate": 0.63,
+   "fix_link_rate": 0.667,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.3
   },
   {
@@ -1040,20 +1285,53 @@
    "n": 27,
    "retrievable_fix_rate": 0.593,
    "any_live_reference_rate": 0.593,
+   "fix_link_rate": 0.704,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.3
+  },
+  {
+   "vendor": "cobham",
+   "n": 27,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.33
+  },
+  {
+   "vendor": "dbbroadcast",
+   "n": 27,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.7
   },
   {
    "vendor": "arm",
    "n": 26,
    "retrievable_fix_rate": 0.231,
    "any_live_reference_rate": 0.231,
+   "fix_link_rate": 0.846,
+   "own_cna_share": 0.346,
    "nvd_identifiability_mean": 1.31
+  },
+  {
+   "vendor": "robustel",
+   "n": 26,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
   },
   {
    "vendor": "johnsoncontrols",
    "n": 26,
    "retrievable_fix_rate": 0.731,
    "any_live_reference_rate": 0.731,
+   "fix_link_rate": 0.731,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.42
   },
   {
@@ -1061,111 +1339,134 @@
    "n": 26,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.77
-  },
-  {
-   "vendor": "robustel",
-   "n": 26,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "mbssolutions",
-   "n": 25,
-   "retrievable_fix_rate": 1.0,
-   "any_live_reference_rate": 1.0,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "telesquare",
-   "n": 25,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.72
   },
   {
    "vendor": "byzoro",
    "n": 25,
    "retrievable_fix_rate": 0.04,
    "any_live_reference_rate": 0.04,
+   "fix_link_rate": 0.04,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.12
+  },
+  {
+   "vendor": "telesquare",
+   "n": 25,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.72
+  },
+  {
+   "vendor": "mbssolutions",
+   "n": 25,
+   "retrievable_fix_rate": 1.0,
+   "any_live_reference_rate": 1.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
   },
   {
    "vendor": "kyocera",
    "n": 25,
    "retrievable_fix_rate": 0.2,
    "any_live_reference_rate": 0.2,
+   "fix_link_rate": 0.2,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.08
-  },
-  {
-   "vendor": "sound4",
-   "n": 24,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
   },
   {
    "vendor": "intel",
    "n": 24,
    "retrievable_fix_rate": 0.5,
    "any_live_reference_rate": 0.5,
+   "fix_link_rate": 0.667,
+   "own_cna_share": 0.417,
    "nvd_identifiability_mean": 1.74
   },
   {
-   "vendor": "nortekcontrol",
+   "vendor": "sound4",
    "n": 24,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.0
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
   },
   {
    "vendor": "lblink",
    "n": 24,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.61
   },
   {
-   "vendor": "baxter",
-   "n": 23,
+   "vendor": "nortekcontrol",
+   "n": 24,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.87
-  },
-  {
-   "vendor": "peplink",
-   "n": 23,
-   "retrievable_fix_rate": 0.435,
-   "any_live_reference_rate": 0.435,
-   "nvd_identifiability_mean": 1.83
-  },
-  {
-   "vendor": "meetcircle",
-   "n": 23,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "endress",
-   "n": 23,
-   "retrievable_fix_rate": 0.826,
-   "any_live_reference_rate": 0.826,
-   "nvd_identifiability_mean": 0.78
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
   },
   {
    "vendor": "digi",
    "n": 23,
    "retrievable_fix_rate": 0.478,
    "any_live_reference_rate": 0.478,
+   "fix_link_rate": 0.522,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.35
+  },
+  {
+   "vendor": "baxter",
+   "n": 23,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.174,
+   "nvd_identifiability_mean": 1.87
+  },
+  {
+   "vendor": "endress",
+   "n": 23,
+   "retrievable_fix_rate": 0.826,
+   "any_live_reference_rate": 0.826,
+   "fix_link_rate": 0.913,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.78
+  },
+  {
+   "vendor": "meetcircle",
+   "n": 23,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "autel",
+   "n": 23,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.17
   },
   {
    "vendor": "logitech",
    "n": 23,
    "retrievable_fix_rate": 0.13,
    "any_live_reference_rate": 0.13,
+   "fix_link_rate": 0.478,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.48
   },
   {
@@ -1173,62 +1474,71 @@
    "n": 23,
    "retrievable_fix_rate": 0.174,
    "any_live_reference_rate": 0.174,
+   "fix_link_rate": 0.391,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.65
   },
   {
-   "vendor": "autel",
+   "vendor": "peplink",
    "n": 23,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.17
-  },
-  {
-   "vendor": "circutor",
-   "n": 22,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
+   "retrievable_fix_rate": 0.435,
+   "any_live_reference_rate": 0.435,
+   "fix_link_rate": 0.435,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.83
   },
   {
    "vendor": "veritas",
    "n": 22,
    "retrievable_fix_rate": 0.091,
    "any_live_reference_rate": 0.091,
+   "fix_link_rate": 0.955,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "epson",
-   "n": 21,
-   "retrievable_fix_rate": 0.381,
-   "any_live_reference_rate": 0.381,
-   "nvd_identifiability_mean": 1.33
-  },
-  {
-   "vendor": "ipcom",
-   "n": 21,
+   "vendor": "circutor",
+   "n": 22,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "hitachi",
-   "n": 21,
-   "retrievable_fix_rate": 0.762,
-   "any_live_reference_rate": 0.762,
-   "nvd_identifiability_mean": 1.45
   },
   {
    "vendor": "gehealthcare",
    "n": 21,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.67
+  },
+  {
+   "vendor": "epson",
+   "n": 21,
+   "retrievable_fix_rate": 0.381,
+   "any_live_reference_rate": 0.381,
+   "fix_link_rate": 0.429,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.33
+  },
+  {
+   "vendor": "geovision",
+   "n": 21,
+   "retrievable_fix_rate": 0.429,
+   "any_live_reference_rate": 0.429,
+   "fix_link_rate": 0.524,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.81
   },
   {
    "vendor": "airspan",
    "n": 21,
    "retrievable_fix_rate": 0.048,
    "any_live_reference_rate": 0.048,
+   "fix_link_rate": 0.381,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.24
   },
   {
@@ -1236,97 +1546,152 @@
    "n": 21,
    "retrievable_fix_rate": 0.286,
    "any_live_reference_rate": 0.286,
+   "fix_link_rate": 0.286,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.1
   },
   {
-   "vendor": "geovision",
+   "vendor": "ipcom",
    "n": 21,
-   "retrievable_fix_rate": 0.429,
-   "any_live_reference_rate": 0.429,
-   "nvd_identifiability_mean": 1.81
-  },
-  {
-   "vendor": "aten",
-   "n": 20,
-   "retrievable_fix_rate": 0.15,
-   "any_live_reference_rate": 0.15,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "datacast",
-   "n": 20,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.0
-  },
-  {
-   "vendor": "asustor",
-   "n": 20,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.7
-  },
-  {
-   "vendor": "asrmicro",
-   "n": 20,
-   "retrievable_fix_rate": 1.0,
-   "any_live_reference_rate": 1.0,
-   "nvd_identifiability_mean": 1.1
+   "vendor": "hitachi",
+   "n": 21,
+   "retrievable_fix_rate": 0.762,
+   "any_live_reference_rate": 0.762,
+   "fix_link_rate": 0.857,
+   "own_cna_share": 0.333,
+   "nvd_identifiability_mean": 1.45
   },
   {
    "vendor": "opticam",
    "n": 20,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "dataprobe",
+   "vendor": "aten",
    "n": 20,
-   "retrievable_fix_rate": 0.6,
-   "any_live_reference_rate": 0.6,
-   "nvd_identifiability_mean": 1.0
+   "retrievable_fix_rate": 0.15,
+   "any_live_reference_rate": 0.15,
+   "fix_link_rate": 0.15,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "asustor",
+   "n": 20,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.7
   },
   {
    "vendor": "silabs",
    "n": 20,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.05,
+   "own_cna_share": 0.1,
    "nvd_identifiability_mean": 1.4
+  },
+  {
+   "vendor": "datacast",
+   "n": 20,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.0
+  },
+  {
+   "vendor": "dataprobe",
+   "n": 20,
+   "retrievable_fix_rate": 0.6,
+   "any_live_reference_rate": 0.6,
+   "fix_link_rate": 0.9,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
   },
   {
    "vendor": "verizon",
    "n": 20,
    "retrievable_fix_rate": 0.5,
    "any_live_reference_rate": 0.5,
+   "fix_link_rate": 0.5,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.85
+  },
+  {
+   "vendor": "asrmicro",
+   "n": 20,
+   "retrievable_fix_rate": 1.0,
+   "any_live_reference_rate": 1.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 1.0,
+   "nvd_identifiability_mean": 1.1
+  },
+  {
+   "vendor": "akuvox",
+   "n": 19,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.053,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.63
+  },
+  {
+   "vendor": "adtran",
+   "n": 19,
+   "retrievable_fix_rate": 0.211,
+   "any_live_reference_rate": 0.211,
+   "fix_link_rate": 0.211,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.74
   },
   {
    "vendor": "tesla",
    "n": 19,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.06
-  },
-  {
-   "vendor": "panasonic",
-   "n": 19,
-   "retrievable_fix_rate": 0.053,
-   "any_live_reference_rate": 0.053,
-   "nvd_identifiability_mean": 1.32
   },
   {
    "vendor": "weidmueller",
    "n": 19,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.263,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.05
+  },
+  {
+   "vendor": "westermo",
+   "n": 19,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.158,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.37
   },
   {
    "vendor": "algosolutions",
    "n": 19,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
@@ -1334,69 +1699,35 @@
    "n": 19,
    "retrievable_fix_rate": 0.316,
    "any_live_reference_rate": 0.316,
+   "fix_link_rate": 0.316,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.26
   },
   {
-   "vendor": "akuvox",
+   "vendor": "panasonic",
    "n": 19,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.63
-  },
-  {
-   "vendor": "westermo",
-   "n": 19,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.37
-  },
-  {
-   "vendor": "adtran",
-   "n": 19,
-   "retrievable_fix_rate": 0.211,
-   "any_live_reference_rate": 0.211,
-   "nvd_identifiability_mean": 1.74
+   "retrievable_fix_rate": 0.053,
+   "any_live_reference_rate": 0.053,
+   "fix_link_rate": 0.579,
+   "own_cna_share": 0.105,
+   "nvd_identifiability_mean": 1.32
   },
   {
    "vendor": "yealink",
    "n": 18,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.39
-  },
-  {
-   "vendor": "heimgardtechnologies",
-   "n": 18,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "emc",
-   "n": 18,
-   "retrievable_fix_rate": 0.111,
-   "any_live_reference_rate": 0.111,
-   "nvd_identifiability_mean": 1.33
-  },
-  {
-   "vendor": "flir",
-   "n": 18,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.41
-  },
-  {
-   "vendor": "mitel",
-   "n": 18,
-   "retrievable_fix_rate": 0.722,
-   "any_live_reference_rate": 0.722,
-   "nvd_identifiability_mean": 1.44
   },
   {
    "vendor": "phicomm",
    "n": 18,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.5
   },
   {
@@ -1404,90 +1735,134 @@
    "n": 18,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.06
   },
   {
-   "vendor": "st",
-   "n": 17,
-   "retrievable_fix_rate": 0.059,
-   "any_live_reference_rate": 0.059,
-   "nvd_identifiability_mean": 0.94
-  },
-  {
-   "vendor": "medtronic",
-   "n": 17,
+   "vendor": "flir",
+   "n": 18,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.47
-  },
-  {
-   "vendor": "ingate",
-   "n": 17,
-   "retrievable_fix_rate": 0.765,
-   "any_live_reference_rate": 0.765,
-   "nvd_identifiability_mean": 1.24
-  },
-  {
-   "vendor": "bluecoat",
-   "n": 17,
-   "retrievable_fix_rate": 0.235,
-   "any_live_reference_rate": 0.235,
-   "nvd_identifiability_mean": 1.59
-  },
-  {
-   "vendor": "avtech",
-   "n": 17,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.6
-  },
-  {
-   "vendor": "sonos",
-   "n": 17,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.222,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.41
+  },
+  {
+   "vendor": "emc",
+   "n": 18,
+   "retrievable_fix_rate": 0.111,
+   "any_live_reference_rate": 0.111,
+   "fix_link_rate": 0.111,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.33
+  },
+  {
+   "vendor": "mitel",
+   "n": 18,
+   "retrievable_fix_rate": 0.722,
+   "any_live_reference_rate": 0.722,
+   "fix_link_rate": 0.833,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.44
+  },
+  {
+   "vendor": "heimgardtechnologies",
+   "n": 18,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
   },
   {
    "vendor": "bbraun",
    "n": 17,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.59
   },
   {
-   "vendor": "seagate",
+   "vendor": "bluecoat",
    "n": 17,
-   "retrievable_fix_rate": 0.059,
-   "any_live_reference_rate": 0.059,
-   "nvd_identifiability_mean": 0.71
+   "retrievable_fix_rate": 0.235,
+   "any_live_reference_rate": 0.235,
+   "fix_link_rate": 0.706,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.59
+  },
+  {
+   "vendor": "ingate",
+   "n": 17,
+   "retrievable_fix_rate": 0.765,
+   "any_live_reference_rate": 0.765,
+   "fix_link_rate": 0.765,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.24
+  },
+  {
+   "vendor": "sonos",
+   "n": 17,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.41
+  },
+  {
+   "vendor": "medtronic",
+   "n": 17,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.176,
+   "own_cna_share": 0.059,
+   "nvd_identifiability_mean": 0.47
+  },
+  {
+   "vendor": "avtech",
+   "n": 17,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.6
   },
   {
    "vendor": "waterfallsecurity",
    "n": 17,
    "retrievable_fix_rate": 1.0,
    "any_live_reference_rate": 1.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.0
   },
   {
-   "vendor": "ilevia",
-   "n": 16,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.12
+   "vendor": "st",
+   "n": 17,
+   "retrievable_fix_rate": 0.059,
+   "any_live_reference_rate": 0.059,
+   "fix_link_rate": 0.235,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.94
   },
   {
-   "vendor": "silextechnology",
-   "n": 16,
-   "retrievable_fix_rate": 0.688,
-   "any_live_reference_rate": 0.688,
-   "nvd_identifiability_mean": 1.19
+   "vendor": "seagate",
+   "n": 17,
+   "retrievable_fix_rate": 0.059,
+   "any_live_reference_rate": 0.059,
+   "fix_link_rate": 0.118,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.71
   },
   {
-   "vendor": "nxp",
+   "vendor": "corega",
    "n": 16,
-   "retrievable_fix_rate": 0.25,
-   "any_live_reference_rate": 0.25,
+   "retrievable_fix_rate": 0.375,
+   "any_live_reference_rate": 0.375,
+   "fix_link_rate": 0.938,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.5
   },
   {
@@ -1495,76 +1870,161 @@
    "n": 16,
    "retrievable_fix_rate": 0.375,
    "any_live_reference_rate": 0.375,
+   "fix_link_rate": 0.5,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.94
   },
   {
-   "vendor": "microhardcorp",
+   "vendor": "nxp",
    "n": 16,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.44
+   "retrievable_fix_rate": 0.25,
+   "any_live_reference_rate": 0.25,
+   "fix_link_rate": 0.312,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.5
   },
   {
    "vendor": "sma",
    "n": 16,
    "retrievable_fix_rate": 0.062,
    "any_live_reference_rate": 0.062,
+   "fix_link_rate": 0.062,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.38
   },
   {
-   "vendor": "corega",
+   "vendor": "ilevia",
    "n": 16,
-   "retrievable_fix_rate": 0.375,
-   "any_live_reference_rate": 0.375,
-   "nvd_identifiability_mean": 0.5
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.12
   },
   {
-   "vendor": "airties",
-   "n": 15,
-   "retrievable_fix_rate": 0.067,
-   "any_live_reference_rate": 0.067,
-   "nvd_identifiability_mean": 1.53
+   "vendor": "microhardcorp",
+   "n": 16,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.44
+  },
+  {
+   "vendor": "silextechnology",
+   "n": 16,
+   "retrievable_fix_rate": 0.688,
+   "any_live_reference_rate": 0.688,
+   "fix_link_rate": 0.688,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.19
   },
   {
    "vendor": "hpe",
    "n": 15,
    "retrievable_fix_rate": 0.067,
    "any_live_reference_rate": 0.067,
+   "fix_link_rate": 0.733,
+   "own_cna_share": 0.667,
    "nvd_identifiability_mean": 1.4
   },
   {
-   "vendor": "loytec",
+   "vendor": "kddi",
+   "n": 15,
+   "retrievable_fix_rate": 0.867,
+   "any_live_reference_rate": 0.867,
+   "fix_link_rate": 0.867,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.87
+  },
+  {
+   "vendor": "dlinkcorporation",
+   "n": 15,
+   "retrievable_fix_rate": 1.0,
+   "any_live_reference_rate": 1.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": null
+  },
+  {
+   "vendor": "engeniustech",
+   "n": 15,
+   "retrievable_fix_rate": 0.067,
+   "any_live_reference_rate": 0.067,
+   "fix_link_rate": 0.067,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.6
+  },
+  {
+   "vendor": "cambiumnetworks",
    "n": 15,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.87
+  },
+  {
+   "vendor": "barracudanetworks",
+   "n": 15,
+   "retrievable_fix_rate": 0.6,
+   "any_live_reference_rate": 0.6,
+   "fix_link_rate": 0.6,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.73
+  },
+  {
+   "vendor": "airties",
+   "n": 15,
+   "retrievable_fix_rate": 0.067,
+   "any_live_reference_rate": 0.067,
+   "fix_link_rate": 0.067,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.53
   },
   {
-   "vendor": "digisol",
+   "vendor": "securifi",
    "n": 15,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.57
-  },
-  {
-   "vendor": "anviz",
-   "n": 15,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.0
+   "retrievable_fix_rate": 0.333,
+   "any_live_reference_rate": 0.333,
+   "fix_link_rate": 0.333,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.67
   },
   {
    "vendor": "drobo",
    "n": 15,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "digisol",
+   "n": 15,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.57
+  },
+  {
+   "vendor": "tecnomobile",
+   "n": 15,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.8
   },
   {
    "vendor": "audiocodes",
    "n": 15,
    "retrievable_fix_rate": 0.2,
    "any_live_reference_rate": 0.2,
+   "fix_link_rate": 0.2,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.67
   },
   {
@@ -1572,167 +2032,98 @@
    "n": 15,
    "retrievable_fix_rate": 0.667,
    "any_live_reference_rate": 0.667,
+   "fix_link_rate": 0.667,
+   "own_cna_share": 0.733,
    "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "barracudanetworks",
-   "n": 15,
-   "retrievable_fix_rate": 0.6,
-   "any_live_reference_rate": 0.6,
-   "nvd_identifiability_mean": 1.73
-  },
-  {
-   "vendor": "tecnomobile",
-   "n": 15,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.8
-  },
-  {
-   "vendor": "dlinkcorporation",
-   "n": 15,
-   "retrievable_fix_rate": 1.0,
-   "any_live_reference_rate": 1.0,
-   "nvd_identifiability_mean": null
   },
   {
    "vendor": "bd",
    "n": 15,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.8,
+   "own_cna_share": 0.533,
    "nvd_identifiability_mean": 1.2
   },
   {
-   "vendor": "engeniustech",
-   "n": 15,
-   "retrievable_fix_rate": 0.067,
-   "any_live_reference_rate": 0.067,
-   "nvd_identifiability_mean": 0.6
-  },
-  {
-   "vendor": "securifi",
-   "n": 15,
-   "retrievable_fix_rate": 0.333,
-   "any_live_reference_rate": 0.333,
-   "nvd_identifiability_mean": 1.67
-  },
-  {
-   "vendor": "cambiumnetworks",
+   "vendor": "anviz",
    "n": 15,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.87
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.0
   },
   {
-   "vendor": "kddi",
+   "vendor": "loytec",
    "n": 15,
-   "retrievable_fix_rate": 0.867,
-   "any_live_reference_rate": 0.867,
-   "nvd_identifiability_mean": 1.87
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.53
   },
   {
    "vendor": "teltonikanetworks",
    "n": 14,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.93
-  },
-  {
-   "vendor": "mbconnectline",
-   "n": 14,
-   "retrievable_fix_rate": 0.571,
-   "any_live_reference_rate": 0.571,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "meshtastic",
-   "n": 14,
-   "retrievable_fix_rate": 0.643,
-   "any_live_reference_rate": 0.643,
-   "nvd_identifiability_mean": 1.29
-  },
-  {
-   "vendor": "getvera",
-   "n": 14,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.14
-  },
-  {
-   "vendor": "seikosol",
-   "n": 14,
-   "retrievable_fix_rate": 1.0,
-   "any_live_reference_rate": 1.0,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "xiongmaitech",
-   "n": 14,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.71
-  },
-  {
-   "vendor": "actiontec",
-   "n": 14,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.57
-  },
-  {
-   "vendor": "hongdian",
-   "n": 14,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.29
-  },
-  {
-   "vendor": "dell",
-   "n": 14,
-   "retrievable_fix_rate": 0.429,
-   "any_live_reference_rate": 0.429,
-   "nvd_identifiability_mean": 1.46
-  },
-  {
-   "vendor": "nuuo",
-   "n": 14,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.5
-  },
-  {
-   "vendor": "securecomputing",
-   "n": 14,
-   "retrievable_fix_rate": 0.643,
-   "any_live_reference_rate": 0.643,
-   "nvd_identifiability_mean": 1.71
-  },
-  {
-   "vendor": "alpsalpine",
-   "n": 14,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.71
   },
   {
    "vendor": "korenix",
    "n": 14,
    "retrievable_fix_rate": 0.143,
    "any_live_reference_rate": 0.143,
+   "fix_link_rate": 0.214,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.57
   },
   {
-   "vendor": "abus",
+   "vendor": "zzinc",
+   "n": 14,
+   "retrievable_fix_rate": 0.929,
+   "any_live_reference_rate": 0.929,
+   "fix_link_rate": 0.929,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "alpsalpine",
    "n": 14,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.86
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.71
+  },
+  {
+   "vendor": "lavamobiles",
+   "n": 14,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.0
+  },
+  {
+   "vendor": "nuuo",
+   "n": 14,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.286,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.5
   },
   {
    "vendor": "omron",
    "n": 14,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.571,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.79
   },
   {
@@ -1740,118 +2131,170 @@
    "n": 14,
    "retrievable_fix_rate": 0.143,
    "any_live_reference_rate": 0.143,
+   "fix_link_rate": 0.143,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.79
   },
   {
-   "vendor": "relyum",
+   "vendor": "meshtastic",
    "n": 14,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
+   "retrievable_fix_rate": 0.643,
+   "any_live_reference_rate": 0.643,
+   "fix_link_rate": 0.643,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.29
   },
   {
    "vendor": "beetel",
    "n": 14,
    "retrievable_fix_rate": 0.071,
    "any_live_reference_rate": 0.071,
+   "fix_link_rate": 0.071,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.09
   },
   {
-   "vendor": "zzinc",
+   "vendor": "seikosol",
    "n": 14,
-   "retrievable_fix_rate": 0.929,
-   "any_live_reference_rate": 0.929,
-   "nvd_identifiability_mean": 2.0
+   "retrievable_fix_rate": 1.0,
+   "any_live_reference_rate": 1.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
   },
   {
-   "vendor": "lavamobiles",
+   "vendor": "dell",
    "n": 14,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.0
-  },
-  {
-   "vendor": "chinamobile",
-   "n": 13,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "oneplus",
-   "n": 13,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.62
-  },
-  {
-   "vendor": "deltaww",
-   "n": 13,
-   "retrievable_fix_rate": 0.769,
-   "any_live_reference_rate": 0.769,
-   "nvd_identifiability_mean": 1.23
-  },
-  {
-   "vendor": "lannerinc",
-   "n": 13,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "socomec",
-   "n": 13,
-   "retrievable_fix_rate": 0.154,
-   "any_live_reference_rate": 0.154,
-   "nvd_identifiability_mean": 1.85
-  },
-  {
-   "vendor": "entrust",
-   "n": 13,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "iptime",
-   "n": 13,
-   "retrievable_fix_rate": 0.077,
-   "any_live_reference_rate": 0.077,
+   "retrievable_fix_rate": 0.429,
+   "any_live_reference_rate": 0.429,
+   "fix_link_rate": 0.5,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.46
   },
   {
-   "vendor": "unitree",
-   "n": 13,
-   "retrievable_fix_rate": 0.154,
-   "any_live_reference_rate": 0.154,
-   "nvd_identifiability_mean": 1.1
+   "vendor": "hongdian",
+   "n": 14,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.286,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.29
   },
   {
-   "vendor": "poly",
-   "n": 13,
-   "retrievable_fix_rate": 0.077,
-   "any_live_reference_rate": 0.077,
-   "nvd_identifiability_mean": 0.85
+   "vendor": "relyum",
+   "n": 14,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.5,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "anker",
+   "vendor": "xiongmaitech",
+   "n": 14,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.286,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.71
+  },
+  {
+   "vendor": "actiontec",
+   "n": 14,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.071,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.57
+  },
+  {
+   "vendor": "abus",
+   "n": 14,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.86
+  },
+  {
+   "vendor": "securecomputing",
+   "n": 14,
+   "retrievable_fix_rate": 0.643,
+   "any_live_reference_rate": 0.643,
+   "fix_link_rate": 0.786,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.71
+  },
+  {
+   "vendor": "mbconnectline",
+   "n": 14,
+   "retrievable_fix_rate": 0.571,
+   "any_live_reference_rate": 0.571,
+   "fix_link_rate": 0.571,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "getvera",
+   "n": 14,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.14
+  },
+  {
+   "vendor": "ecoa",
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.0
   },
   {
    "vendor": "google",
    "n": 13,
    "retrievable_fix_rate": 0.308,
    "any_live_reference_rate": 0.308,
+   "fix_link_rate": 0.385,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.23
+  },
+  {
+   "vendor": "toshiba",
+   "n": 13,
+   "retrievable_fix_rate": 0.538,
+   "any_live_reference_rate": 0.538,
+   "fix_link_rate": 0.538,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.15
+  },
+  {
+   "vendor": "ruijienetworks",
+   "n": 13,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.23
+  },
+  {
+   "vendor": "freseniuskabi",
+   "n": 13,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.92
   },
   {
    "vendor": "terramaster",
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.77
   },
   {
@@ -1859,20 +2302,44 @@
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "ecoa",
+   "vendor": "entrust",
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.0
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "ruijienetworks",
+   "vendor": "oneplus",
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.077,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.62
+  },
+  {
+   "vendor": "iptime",
+   "n": 13,
+   "retrievable_fix_rate": 0.077,
+   "any_live_reference_rate": 0.077,
+   "fix_link_rate": 0.077,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.46
+  },
+  {
+   "vendor": "deltaww",
+   "n": 13,
+   "retrievable_fix_rate": 0.769,
+   "any_live_reference_rate": 0.769,
+   "fix_link_rate": 0.769,
+   "own_cna_share": 0.615,
    "nvd_identifiability_mean": 1.23
   },
   {
@@ -1880,34 +2347,53 @@
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.0
   },
   {
-   "vendor": "yitechnology",
+   "vendor": "chinamobile",
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.154,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "toshiba",
-   "n": 13,
-   "retrievable_fix_rate": 0.538,
-   "any_live_reference_rate": 0.538,
-   "nvd_identifiability_mean": 1.15
-  },
-  {
-   "vendor": "freseniuskabi",
+   "vendor": "lannerinc",
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.92
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "unitree",
+   "n": 13,
+   "retrievable_fix_rate": 0.154,
+   "any_live_reference_rate": 0.154,
+   "fix_link_rate": 0.154,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.1
+  },
+  {
+   "vendor": "poly",
+   "n": 13,
+   "retrievable_fix_rate": 0.077,
+   "any_live_reference_rate": 0.077,
+   "fix_link_rate": 0.308,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.85
   },
   {
    "vendor": "szlbt",
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.92
   },
   {
@@ -1915,167 +2401,296 @@
    "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.31
   },
   {
-   "vendor": "endruntechnologies",
-   "n": 12,
+   "vendor": "socomec",
+   "n": 13,
+   "retrievable_fix_rate": 0.154,
+   "any_live_reference_rate": 0.154,
+   "fix_link_rate": 0.308,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.85
+  },
+  {
+   "vendor": "anker",
+   "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "paxtechnology",
-   "n": 12,
+   "vendor": "yitechnology",
+   "n": 13,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.67
-  },
-  {
-   "vendor": "rittal",
-   "n": 12,
-   "retrievable_fix_rate": 0.083,
-   "any_live_reference_rate": 0.083,
-   "nvd_identifiability_mean": 1.33
-  },
-  {
-   "vendor": "alcatellucent",
-   "n": 12,
-   "retrievable_fix_rate": 0.083,
-   "any_live_reference_rate": 0.083,
-   "nvd_identifiability_mean": 1.75
-  },
-  {
-   "vendor": "paloaltonetworks",
-   "n": 12,
-   "retrievable_fix_rate": 0.833,
-   "any_live_reference_rate": 0.833,
-   "nvd_identifiability_mean": 1.92
-  },
-  {
-   "vendor": "cdatatec",
-   "n": 12,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "hidglobal",
-   "n": 12,
-   "retrievable_fix_rate": 0.667,
-   "any_live_reference_rate": 0.667,
-   "nvd_identifiability_mean": 0.83
   },
   {
    "vendor": "buffalotech",
    "n": 12,
    "retrievable_fix_rate": 0.25,
    "any_live_reference_rate": 0.25,
+   "fix_link_rate": 0.25,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.33
   },
   {
-   "vendor": "govicture",
+   "vendor": "hidglobal",
+   "n": 12,
+   "retrievable_fix_rate": 0.667,
+   "any_live_reference_rate": 0.667,
+   "fix_link_rate": 0.75,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.83
+  },
+  {
+   "vendor": "endruntechnologies",
    "n": 12,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.67
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "pingtel",
+   "vendor": "alcatellucent",
    "n": 12,
    "retrievable_fix_rate": 0.083,
    "any_live_reference_rate": 0.083,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "htc",
-   "n": 12,
-   "retrievable_fix_rate": 0.167,
-   "any_live_reference_rate": 0.167,
-   "nvd_identifiability_mean": 1.5
-  },
-  {
-   "vendor": "alcatel",
-   "n": 12,
-   "retrievable_fix_rate": 0.167,
-   "any_live_reference_rate": 0.167,
-   "nvd_identifiability_mean": 1.25
-  },
-  {
-   "vendor": "mercurycom",
-   "n": 12,
-   "retrievable_fix_rate": 0.167,
-   "any_live_reference_rate": 0.167,
-   "nvd_identifiability_mean": 1.5
-  },
-  {
-   "vendor": "microdigital",
-   "n": 12,
-   "retrievable_fix_rate": 1.0,
-   "any_live_reference_rate": 1.0,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "toshibatec",
-   "n": 12,
-   "retrievable_fix_rate": 0.833,
-   "any_live_reference_rate": 0.833,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "optilinknetwork",
-   "n": 12,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
+   "fix_link_rate": 0.333,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.75
   },
   {
    "vendor": "aqara",
    "n": 12,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "senselive",
+   "vendor": "alcatel",
+   "n": 12,
+   "retrievable_fix_rate": 0.167,
+   "any_live_reference_rate": 0.167,
+   "fix_link_rate": 0.25,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.25
+  },
+  {
+   "vendor": "rittal",
+   "n": 12,
+   "retrievable_fix_rate": 0.083,
+   "any_live_reference_rate": 0.083,
+   "fix_link_rate": 0.083,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.33
+  },
+  {
+   "vendor": "microdigital",
+   "n": 12,
+   "retrievable_fix_rate": 1.0,
+   "any_live_reference_rate": 1.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "htc",
+   "n": 12,
+   "retrievable_fix_rate": 0.167,
+   "any_live_reference_rate": 0.167,
+   "fix_link_rate": 0.167,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.5
+  },
+  {
+   "vendor": "govicture",
+   "n": 12,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.67
+  },
+  {
+   "vendor": "paloaltonetworks",
+   "n": 12,
+   "retrievable_fix_rate": 0.833,
+   "any_live_reference_rate": 0.833,
+   "fix_link_rate": 0.833,
+   "own_cna_share": 0.917,
+   "nvd_identifiability_mean": 1.92
+  },
+  {
+   "vendor": "paxtechnology",
+   "n": 12,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.67
+  },
+  {
+   "vendor": "toshibatec",
+   "n": 12,
+   "retrievable_fix_rate": 0.833,
+   "any_live_reference_rate": 0.833,
+   "fix_link_rate": 0.833,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "pingtel",
+   "n": 12,
+   "retrievable_fix_rate": 0.083,
+   "any_live_reference_rate": 0.083,
+   "fix_link_rate": 0.917,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "optilinknetwork",
+   "n": 12,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "cdatatec",
+   "n": 12,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "mercurycom",
+   "n": 12,
+   "retrievable_fix_rate": 0.167,
+   "any_live_reference_rate": 0.167,
+   "fix_link_rate": 0.167,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.5
+  },
+  {
+   "vendor": "uvdrobots",
    "n": 11,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "gogogate",
-   "n": 11,
-   "retrievable_fix_rate": 1.0,
-   "any_live_reference_rate": 1.0,
-   "nvd_identifiability_mean": 2.0
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
   },
   {
    "vendor": "raisecom",
    "n": 11,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.82
-  },
-  {
-   "vendor": "trane",
-   "n": 11,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.73
-  },
-  {
-   "vendor": "ankerin",
-   "n": 11,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
   },
   {
    "vendor": "mofinetwork",
    "n": 11,
    "retrievable_fix_rate": 0.909,
    "any_live_reference_rate": 0.909,
+   "fix_link_rate": 0.909,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "schneiderelectric",
+   "n": 11,
+   "retrievable_fix_rate": 0.909,
+   "any_live_reference_rate": 0.909,
+   "fix_link_rate": 0.909,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.45
+  },
+  {
+   "vendor": "gavazziautomation",
+   "n": 11,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "axesstel",
+   "n": 11,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.73
+  },
+  {
+   "vendor": "ankerin",
+   "n": 11,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "trane",
+   "n": 11,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.73
+  },
+  {
+   "vendor": "iij",
+   "n": 11,
+   "retrievable_fix_rate": 0.636,
+   "any_live_reference_rate": 0.636,
+   "fix_link_rate": 0.909,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "eaton",
+   "n": 11,
+   "retrievable_fix_rate": 0.091,
+   "any_live_reference_rate": 0.091,
+   "fix_link_rate": 0.364,
+   "own_cna_share": 0.091,
+   "nvd_identifiability_mean": 0.82
+  },
+  {
+   "vendor": "redlion",
+   "n": 11,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.182,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 0.55
+  },
+  {
+   "vendor": "gogogate",
+   "n": 11,
+   "retrievable_fix_rate": 1.0,
+   "any_live_reference_rate": 1.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
@@ -2083,286 +2698,152 @@
    "n": 11,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "dcnetworks",
-   "n": 11,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.27
-  },
-  {
-   "vendor": "silverpeak",
-   "n": 11,
-   "retrievable_fix_rate": 0.273,
-   "any_live_reference_rate": 0.273,
-   "nvd_identifiability_mean": 1.73
-  },
-  {
-   "vendor": "redlion",
-   "n": 11,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.55
-  },
-  {
-   "vendor": "sielco",
-   "n": 11,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "iij",
-   "n": 11,
-   "retrievable_fix_rate": 0.636,
-   "any_live_reference_rate": 0.636,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "uvdrobots",
-   "n": 11,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "idemia",
-   "n": 11,
-   "retrievable_fix_rate": 0.636,
-   "any_live_reference_rate": 0.636,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "genexis",
-   "n": 11,
-   "retrievable_fix_rate": 0.091,
-   "any_live_reference_rate": 0.091,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "gavazziautomation",
-   "n": 11,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "vonets",
-   "n": 11,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.36
-  },
-  {
-   "vendor": "eaton",
-   "n": 11,
-   "retrievable_fix_rate": 0.091,
-   "any_live_reference_rate": 0.091,
-   "nvd_identifiability_mean": 0.82
   },
   {
    "vendor": "hitrontech",
    "n": 11,
    "retrievable_fix_rate": 0.091,
    "any_live_reference_rate": 0.091,
+   "fix_link_rate": 0.091,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.45
+  },
+  {
+   "vendor": "idemia",
+   "n": 11,
+   "retrievable_fix_rate": 0.636,
+   "any_live_reference_rate": 0.636,
+   "fix_link_rate": 0.909,
+   "own_cna_share": 0.636,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "sielco",
+   "n": 11,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "silverpeak",
+   "n": 11,
+   "retrievable_fix_rate": 0.273,
+   "any_live_reference_rate": 0.273,
+   "fix_link_rate": 0.364,
+   "own_cna_share": 0.364,
+   "nvd_identifiability_mean": 1.73
+  },
+  {
+   "vendor": "dcnetworks",
+   "n": 11,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.27
+  },
+  {
+   "vendor": "genexis",
+   "n": 11,
+   "retrievable_fix_rate": 0.091,
+   "any_live_reference_rate": 0.091,
+   "fix_link_rate": 0.091,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "senselive",
+   "n": 11,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "vonets",
+   "n": 11,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.36
   },
   {
    "vendor": "chargepoint",
    "n": 11,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.64
-  },
-  {
-   "vendor": "axesstel",
-   "n": 11,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 0.73
-  },
-  {
-   "vendor": "schneiderelectric",
-   "n": 11,
-   "retrievable_fix_rate": 0.909,
-   "any_live_reference_rate": 0.909,
-   "nvd_identifiability_mean": 1.45
-  },
-  {
-   "vendor": "danfoss",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "amcrest",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.22
-  },
-  {
-   "vendor": "gryphonconnect",
-   "n": 10,
-   "retrievable_fix_rate": 0.9,
-   "any_live_reference_rate": 0.9,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "carrier",
-   "n": 10,
-   "retrievable_fix_rate": 1.0,
-   "any_live_reference_rate": 1.0,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "sitecom",
-   "n": 10,
-   "retrievable_fix_rate": 0.1,
-   "any_live_reference_rate": 0.1,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "openplcproject",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.2
-  },
-  {
-   "vendor": "hmsnetworks",
-   "n": 10,
-   "retrievable_fix_rate": 0.4,
-   "any_live_reference_rate": 0.4,
-   "nvd_identifiability_mean": 1.5
-  },
-  {
-   "vendor": "festo",
-   "n": 10,
-   "retrievable_fix_rate": 0.5,
-   "any_live_reference_rate": 0.5,
-   "nvd_identifiability_mean": 1.22
-  },
-  {
-   "vendor": "owlcyberdefense",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "ingenico",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.0
   },
   {
    "vendor": "dominionvoting",
    "n": 10,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "espressif",
+   "vendor": "hmsnetworks",
    "n": 10,
-   "retrievable_fix_rate": 0.6,
-   "any_live_reference_rate": 0.6,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "enphase",
-   "n": 10,
-   "retrievable_fix_rate": 0.9,
-   "any_live_reference_rate": 0.9,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "billion",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "cypress",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.0
-  },
-  {
-   "vendor": "ovarro",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.0
+   "retrievable_fix_rate": 0.4,
+   "any_live_reference_rate": 0.4,
+   "fix_link_rate": 0.8,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.5
   },
   {
    "vendor": "ormazabal",
    "n": 10,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 2.0
   },
   {
-   "vendor": "syrotech",
+   "vendor": "amcrest",
    "n": 10,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "wyze",
-   "n": 10,
-   "retrievable_fix_rate": 0.3,
-   "any_live_reference_rate": 0.3,
-   "nvd_identifiability_mean": 1.3
-  },
-  {
-   "vendor": "weintek",
-   "n": 10,
-   "retrievable_fix_rate": 0.3,
-   "any_live_reference_rate": 0.3,
-   "nvd_identifiability_mean": 1.7
-  },
-  {
-   "vendor": "70mai",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 1.2
-  },
-  {
-   "vendor": "sv3c",
-   "n": 10,
-   "retrievable_fix_rate": 0.0,
-   "any_live_reference_rate": 0.0,
-   "nvd_identifiability_mean": 2.0
-  },
-  {
-   "vendor": "teradek",
-   "n": 10,
-   "retrievable_fix_rate": 0.1,
-   "any_live_reference_rate": 0.1,
-   "nvd_identifiability_mean": 1.5
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.22
   },
   {
    "vendor": "ecovacs",
    "n": 10,
    "retrievable_fix_rate": 0.2,
    "any_live_reference_rate": 0.2,
+   "fix_link_rate": 0.2,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 0.5
+  },
+  {
+   "vendor": "syrotech",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
   },
   {
    "vendor": "franklinfueling",
    "n": 10,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.7
   },
   {
@@ -2370,7 +2851,171 @@
    "n": 10,
    "retrievable_fix_rate": 0.0,
    "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
    "nvd_identifiability_mean": 1.4
+  },
+  {
+   "vendor": "carrier",
+   "n": 10,
+   "retrievable_fix_rate": 1.0,
+   "any_live_reference_rate": 1.0,
+   "fix_link_rate": 1.0,
+   "own_cna_share": 0.8,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "gryphonconnect",
+   "n": 10,
+   "retrievable_fix_rate": 0.9,
+   "any_live_reference_rate": 0.9,
+   "fix_link_rate": 0.9,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "sitecom",
+   "n": 10,
+   "retrievable_fix_rate": 0.1,
+   "any_live_reference_rate": 0.1,
+   "fix_link_rate": 0.1,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "billion",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "cypress",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.8,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "enphase",
+   "n": 10,
+   "retrievable_fix_rate": 0.9,
+   "any_live_reference_rate": 0.9,
+   "fix_link_rate": 0.9,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "festo",
+   "n": 10,
+   "retrievable_fix_rate": 0.5,
+   "any_live_reference_rate": 0.5,
+   "fix_link_rate": 0.5,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.22
+  },
+  {
+   "vendor": "openplcproject",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.2
+  },
+  {
+   "vendor": "70mai",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.2
+  },
+  {
+   "vendor": "espressif",
+   "n": 10,
+   "retrievable_fix_rate": 0.6,
+   "any_live_reference_rate": 0.6,
+   "fix_link_rate": 0.6,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "danfoss",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "wyze",
+   "n": 10,
+   "retrievable_fix_rate": 0.3,
+   "any_live_reference_rate": 0.3,
+   "fix_link_rate": 0.3,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.3
+  },
+  {
+   "vendor": "ovarro",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "sv3c",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "teradek",
+   "n": 10,
+   "retrievable_fix_rate": 0.1,
+   "any_live_reference_rate": 0.1,
+   "fix_link_rate": 0.1,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.5
+  },
+  {
+   "vendor": "ingenico",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.0
+  },
+  {
+   "vendor": "owlcyberdefense",
+   "n": 10,
+   "retrievable_fix_rate": 0.0,
+   "any_live_reference_rate": 0.0,
+   "fix_link_rate": 0.0,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 2.0
+  },
+  {
+   "vendor": "weintek",
+   "n": 10,
+   "retrievable_fix_rate": 0.3,
+   "any_live_reference_rate": 0.3,
+   "fix_link_rate": 0.3,
+   "own_cna_share": 0.0,
+   "nvd_identifiability_mean": 1.7
   }
  ],
  "rq4_cna_side": {

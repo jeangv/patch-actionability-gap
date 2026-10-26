@@ -20,7 +20,16 @@ Metric names (locked at PR4):
                           unclassifiable URLs excluded
   retrievable_fix_rate    share of CVEs whose record names a fix
                           (fix_availability_score >= 1) and has at least one
-                          live patch or vendor-advisory reference: the headline
+                          live patch or vendor-advisory reference: the headline.
+                          Only patch/vendor-advisory links are crawled and that
+                          tag already scores D2 >= 1, so in practice this equals
+                          "has a live patch or vendor-advisory link" (Monika, PR5)
+
+Added at PR5 (new fields, no locked metric changed):
+  fix_link_rate           share of CVEs with any patch or vendor-advisory link
+  live_given_link_rate    of those, the share with at least one live link
+  own_cna_share           per vendor: share of records whose V5 assigner is
+                          the vendor itself (assignerShortName)
 """
 from __future__ import annotations
 
@@ -140,6 +149,7 @@ def main() -> None:
         recs[cid] = {"published": (a or b)["published"], "path": path, "refs": refs,
                      "nvd_d1": a["identifiability"] if a else None, "nvd_d2": a["fix_availability"] if a else None,
                      "cna_d1": cna_d1, "cna_d2": cna_d2,
+                     "assigner": norm(((raw or {}).get("cveMetadata") or {}).get("assignerShortName") or ""),
                      "vendors": {norm(v) for v in (a or b)["vendors"] if v},
                      "screened_out": bool(SCREEN.search(v5_desc(raw)))}
 
@@ -185,13 +195,17 @@ def main() -> None:
 
     def headline(sel: list[dict]) -> dict:
         f = [cve_flags(r) for r in sel]
+        linked = sum(bool(r["refs"]) for r in sel)
         return {"n": len(sel), "retrievable_fix_rate": round(sum(a for a, _ in f) / len(f), 3) if f else None,
-                "any_live_reference_rate": round(sum(b for _, b in f) / len(f), 3) if f else None}
+                "any_live_reference_rate": round(sum(b for _, b in f) / len(f), 3) if f else None,
+                "fix_link_rate": round(linked / len(sel), 3) if sel else None,
+                "live_given_link_rate": round(sum(b for _, b in f) / linked, 3) if linked else None}
 
     allr = list(recs.values())
     R["headline"] = {"all": headline(allr), "screened": headline([r for r in allr if not r["screened_out"]])}
     R["headline_by_path_era"] = {f"{p}|{e}": headline([r for r in allr if r["path"] == p and era(r["published"]) == e])
                                  for p in ("both", "nvd_only", "v5_only") for e in ("pre-2024", "backlog", "triage")}
+    R["headline_by_path"] = {p: headline([r for r in allr if r["path"] == p]) for p in ("both", "nvd_only", "v5_only")}
     R["screen"] = {"screened_out": sum(r["screened_out"] for r in allr), "kept": sum(not r["screened_out"] for r in allr)}
 
     # RQ3: vendors with at least 10 CVEs (D6).
@@ -205,6 +219,9 @@ def main() -> None:
             h = headline(rs)
             d1 = [r["nvd_d1"] for r in rs if r["nvd_d1"] is not None]
             vend.append({"vendor": v, "n": len(rs), **{k: h[k] for k in ("retrievable_fix_rate", "any_live_reference_rate")},
+                         "fix_link_rate": h["fix_link_rate"],
+                         "own_cna_share": round(sum(bool(r["assigner"]) and (v in r["assigner"] or r["assigner"] in v)
+                                                    for r in rs) / len(rs), 3),
                          "nvd_identifiability_mean": round(sum(d1) / len(d1), 2) if d1 else None})
     vend.sort(key=lambda x: -x["n"])
     R["rq3_vendors"] = vend
